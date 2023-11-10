@@ -1,0 +1,7 @@
+<suite name = "Category banners">
+    <test name = "Check banner types">
+        <classes>
+
+        </classes>
+    </test>
+</suite>
