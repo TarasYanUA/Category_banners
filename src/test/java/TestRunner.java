@@ -10,7 +10,6 @@
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import static com.codeborne.selenide.Selenide.*;
@@ -35,13 +34,6 @@ public class TestRunner {
         Selenide.closeWebDriver();
     }
 
-    public void navigateToStorefront(int tabNumber){
-        $(By.linkText("Предпросмотр")).click();
-        switchTo().window(tabNumber);
-        if($(".cm-btn-success").exists()){
-            $(".cm-btn-success").click();
-        }
-    }
     public void shiftBrowserTab(int tabNumber){
         switchTo().window(tabNumber);
     }

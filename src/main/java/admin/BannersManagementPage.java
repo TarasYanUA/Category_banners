@@ -22,6 +22,7 @@ public class BannersManagementPage {
     public SelenideElement field_Name = $("#elm_category_banner");
     public void clickAndType_field_Name(String name){
         field_Name.click();
+        field_Name.clear();
         field_Name.sendKeys(name);
     }
     public SelenideElement typeImage_Grid = $("input#image_products_multicolumns[value='I']");
@@ -33,19 +34,31 @@ public class BannersManagementPage {
     public SelenideElement button_ServerGrid = $x("(//a[contains(@id, 'server_')])[1]");
     public SelenideElement button_ServerWithoutOptions = $x("(//a[contains(@id, 'server_')])[2]");
     public SelenideElement button_ServerCompact = $x("(//a[contains(@id, 'server_')])[3]");
-    public SelenideElement field_Position = $("#elm_position");
+    SelenideElement field_Position = $("#elm_position");
+    public void clickAndType_field_Position(String position){
+        field_Position.click();
+        field_Position.clear();
+        field_Position.sendKeys(position);
+    }
     public SelenideElement button_Save = $(".cm-submit.btn-primary ");
 
     SelenideElement folder_PublicFiles = $("span[title='Пользовательские файлы']");
     SelenideElement folder_CategoryBanners = $("span[title='Пользовательские файлы/category_banner']");
     SelenideElement folder_8 = $("span[title='Пользовательские файлы/category_banner/8']");
     public void selectPictureForBanner(String picName){
-        folder_PublicFiles.click();
-        folder_CategoryBanners.click();
-        folder_8.click();
-        if($("div[title='В виде списка']").exists()){
-            $("div[title='В виде списка']").click();
+        if($x("//tbody//span[text()='" + picName + "']").exists()){
+            $x("//tbody//span[text()='" + picName + "']").doubleClick();
+        } else {
+            folder_PublicFiles.click();
+            folder_CategoryBanners.click();
+            folder_8.click();
+            if ($("div[title='В виде списка']").exists()) {
+                $("div[title='В виде списка']").click();
+            }
+            $x("//tbody//span[text()='" + picName + "']").click();
+            $x("//tbody//span[text()='" + picName + "']").doubleClick();
         }
-        $x("//tbody//span[text()='" + picName + "']").doubleClick();
     }
+
+
 }
