@@ -12,6 +12,7 @@ public class CsCart {
     SelenideElement categoryElectronics = $(".multiple-table-row a[href$='category_id=166']");
     SelenideElement gearwheelOfCategory = $(".dropdown-icon--tools");
     SelenideElement button_Preview = $x("//a[contains(text(), 'Предпросмотр')]");
+    SelenideElement cookiesOnStorefront = $(".cm-btn-success");
     public CategoryPage navigateToCategoryPage (int tabNumber){
         menu_Products.hover();
         section_Categories.click();
@@ -19,6 +20,7 @@ public class CsCart {
         gearwheelOfCategory.click();
         button_Preview.click();
         switchTo().window(tabNumber);
+        cookiesOnStorefront.click();
         return new CategoryPage();
     }
 

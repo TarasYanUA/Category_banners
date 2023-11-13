@@ -4,6 +4,8 @@ import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import storefront.AssertsPage;
 import storefront.CategoryPage;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -24,6 +26,10 @@ import static com.codeborne.selenide.Selenide.*;
 */
 
 public class BannerType_Image_Var1Test extends TestRunner {
+    String bannerNameFor_Grid = "category_banners_main_image-1_78ep-0t.jpg";
+    String bannerNameFor_WithoutOptions = "category_banners_list_image-1_0f1y-d8.png";
+    String bannerNameFor_CompactList = "category_banners_short_list_pair-1_35vv-7m.png";
+
     @Test(priority = 1)
     public void setConfiguration_BannerType_Image_Var1Test() {
         CsCart csCart = new CsCart();
@@ -58,13 +64,13 @@ public class BannerType_Image_Var1Test extends TestRunner {
         bannersManagementPage.clickAndType_field_Name("AutoBanner type Image 01");
         bannersManagementPage.typeImage_Grid.click();
         bannersManagementPage.button_ServerGrid.click();
-        bannersManagementPage.selectPictureForBanner("category_banners_main_image-1_78ep-0t.jpg");
+        bannersManagementPage.selectPictureForBanner(bannerNameFor_Grid);
         bannersManagementPage.typeImage_WithoutOptions.click();
         bannersManagementPage.button_ServerWithoutOptions.click();
-        bannersManagementPage.selectPictureForBanner("category_banners_list_image-1_0f1y-d8.png");
+        bannersManagementPage.selectPictureForBanner(bannerNameFor_WithoutOptions);
         bannersManagementPage.typeImage_Compact.click();
         bannersManagementPage.button_ServerCompact.click();
-        bannersManagementPage.selectPictureForBanner("category_banners_short_list_pair-1_35vv-7m.png");
+        bannersManagementPage.selectPictureForBanner(bannerNameFor_CompactList);
         bannersManagementPage.clickAndType_field_Position("2");
         bannersManagementPage.button_Save.click();
     }
@@ -73,6 +79,15 @@ public class BannerType_Image_Var1Test extends TestRunner {
     public void check_BannerType_Image_Var1Test(){
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-
+        SoftAssert softAssert = new SoftAssert();
+        AssertsPage assertsPage = new AssertsPage();
+        softAssert.assertTrue($("img[src$='" + bannerNameFor_Grid + "']").exists(),
+                "There is no first banner type Image for Grid!");
+        softAssert.assertTrue(assertsPage.secondBannerForGrid.exists(),
+                "There is no second banner type Image for Grid!");
+        $("img[src$='" + bannerNameFor_Grid + "']").scrollIntoView(false);
+        screenshot("100 BannerType_Image_Var1Test - first banner, Grid");
+        assertsPage.secondBannerForGrid.scrollIntoView(false);
+        screenshot("102 BannerType_Image_Var1Test - second banner, Grid");
     }
 }
