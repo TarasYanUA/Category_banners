@@ -1,4 +1,5 @@
 import admin.BannersManagementPage;
+import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -29,7 +30,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
     public void setConfiguration_BannerType_Image_Var1Test() {
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
-        /*ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
+        ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
         colorschemeSettings.fieldOfActiveColorscheme.click();
         colorschemeSettings.activateColorscheme.click();
         Selenide.sleep(2000);
@@ -42,7 +43,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
         colorschemeSettings.setting_FrameType.selectOptionByValue("solid_without_margins");
         if(colorschemeSettings.setting_MaskForProductImages.isSelected()){
             colorschemeSettings.setting_MaskForProductImages.click();   }
-        colorschemeSettings.button_Save.click();*/
+        colorschemeSettings.button_Save.click();
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
@@ -81,14 +82,13 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
         bannersManagementPage.selectPictureForBanner(firstBannerName_CompactList);
         bannersManagementPage.button_Save.click();
     }
-//(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
-    @Test
+
+    @Test(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
     public void check_BannerType_Image_Var1Test(){
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
         SoftAssert softAssert = new SoftAssert();
         AssertsPage assertsPage = new AssertsPage();
-        //Из-за ошибки https://abteam.planfix.com/task/43074 пришлось делать условия на присутствие баннеров на странице категории
         scrollAndScreenBanner(firstBannerName_Grid, "100 BannerType_Image_Var1Test - first banner, Grid");
         softAssert.assertTrue($(".ut2-gl__banner img").getAttribute("src").contains(firstBannerName_Grid),
                 "There is no first banner of Image type for Grid!");

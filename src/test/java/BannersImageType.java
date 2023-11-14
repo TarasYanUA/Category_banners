@@ -18,7 +18,8 @@ public interface BannersImageType {
             Selenide.refresh();
             Selenide.sleep(2000);
         }
-        $("img[src*='" + bannerName + "']").scrollIntoView(false);
+        $("img[src*='" + bannerName + "']").scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
+        //$("img[src*='" + bannerName + "']").scrollIntoView(false);
         screenshot(screenshotName);
     }
 }
