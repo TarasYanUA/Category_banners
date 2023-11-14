@@ -4,21 +4,21 @@
 
 Запустить тесты можно:
  1) Через файл testng.xml
- 2) Через Surefire отчёт: перейти в "Терминал" и ввести "mvn clean test". После этого в папке "target -> surefire reports"
+ 2) Через Surefire отчёт: перейти в "Терминал" и ввести "mvn clean test". После этого в папке "target -> surefire-reports"
  открыть файл "index.html" с помощью браузера (правая кнопка мыши -> Open in -> Browser).
 */
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TestRunner {
     public static final String BASIC_URL = "https://trs.test.abt.team/4171ultru/admin.php?dispatch=addons.manage";
 
-    @BeforeClass
+    @BeforeMethod
     public void openBrowser() {
         Configuration.browser = "chrome";
         Configuration.holdBrowserOpen = false; //не закрываем браузер пока ведём разработку
@@ -29,7 +29,7 @@ public class TestRunner {
         $("#bp_off_bottom_panel").click();
     }
 
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() {
         Selenide.closeWebDriver();
     }

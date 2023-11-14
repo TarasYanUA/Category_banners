@@ -1,5 +1,4 @@
 import admin.BannersManagementPage;
-import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -25,16 +24,12 @@ import static com.codeborne.selenide.Selenide.*;
 * Позиция -         2
 */
 
-public class BannerType_Image_Var1Test extends TestRunner {
-    String bannerNameFor_Grid = "category_banners_main_image-1_78ep-0t.jpg";
-    String bannerNameFor_WithoutOptions = "category_banners_list_image-1_0f1y-d8.png";
-    String bannerNameFor_CompactList = "category_banners_short_list_pair-1_35vv-7m.png";
-
+public class BannerType_Image_Var1Test extends TestRunner implements BannersImageType {
     @Test(priority = 1)
     public void setConfiguration_BannerType_Image_Var1Test() {
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
-        ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
+        /*ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
         colorschemeSettings.fieldOfActiveColorscheme.click();
         colorschemeSettings.activateColorscheme.click();
         Selenide.sleep(2000);
@@ -47,47 +42,93 @@ public class BannerType_Image_Var1Test extends TestRunner {
         colorschemeSettings.setting_FrameType.selectOptionByValue("solid_without_margins");
         if(colorschemeSettings.setting_MaskForProductImages.isSelected()){
             colorschemeSettings.setting_MaskForProductImages.click();   }
-        colorschemeSettings.button_Save.click();
+        colorschemeSettings.button_Save.click();*/
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        bannersManagementPage.selectLanguageRU();
         if(!bannersManagementPage.status_Disabled.isEmpty()){   //если присутствует статус "Выкл.", то включаем баннер
             for(int i = 0; i <= bannersManagementPage.status_Disabled.size(); i++){
                 bannersManagementPage.status_Disabled.get(i).shouldBe(Condition.enabled).click();
                 $x("//div[contains(@class, 'dropleft open')]//a[@title='Вкл.']").click();
             }
         }
-
         //Работаем с первым баннером
+        bannersManagementPage.selectLanguageRTL();
         $("a[href$='category_banner_id=1']").click();
-        bannersManagementPage.clickAndType_field_Name("AutoBanner type Image 01");
+        bannersManagementPage.clickAndType_field_Name("Autobanner of Image type 01");
         bannersManagementPage.typeImage_Grid.click();
         bannersManagementPage.button_ServerGrid.click();
-        bannersManagementPage.selectPictureForBanner(bannerNameFor_Grid);
+        bannersManagementPage.selectPictureForBanner(firstBannerName_Grid);
         bannersManagementPage.typeImage_WithoutOptions.click();
         bannersManagementPage.button_ServerWithoutOptions.click();
-        bannersManagementPage.selectPictureForBanner(bannerNameFor_WithoutOptions);
+        bannersManagementPage.selectPictureForBanner(firstBannerName_WithoutOptions);
         bannersManagementPage.typeImage_Compact.click();
         bannersManagementPage.button_ServerCompact.click();
-        bannersManagementPage.selectPictureForBanner(bannerNameFor_CompactList);
+        bannersManagementPage.selectPictureForBanner(firstBannerName_CompactList);
         bannersManagementPage.clickAndType_field_Position("2");
         bannersManagementPage.button_Save.click();
-    }
 
-    @Test (priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
+        bannersManagementPage.selectLanguageRU();
+        bannersManagementPage.clickAndType_field_Name("Autobanner of Image type 01");
+        bannersManagementPage.typeImage_Grid.click();
+        bannersManagementPage.button_ServerGrid.click();
+        bannersManagementPage.selectPictureForBanner(firstBannerName_Grid);
+        bannersManagementPage.typeImage_WithoutOptions.click();
+        bannersManagementPage.button_ServerWithoutOptions.click();
+        bannersManagementPage.selectPictureForBanner(firstBannerName_WithoutOptions);
+        bannersManagementPage.typeImage_Compact.click();
+        bannersManagementPage.button_ServerCompact.click();
+        bannersManagementPage.selectPictureForBanner(firstBannerName_CompactList);
+        bannersManagementPage.button_Save.click();
+    }
+//(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
+    @Test
     public void check_BannerType_Image_Var1Test(){
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
         SoftAssert softAssert = new SoftAssert();
         AssertsPage assertsPage = new AssertsPage();
-        softAssert.assertTrue($("img[src$='" + bannerNameFor_Grid + "']").exists(),
-                "There is no first banner type Image for Grid!");
-        softAssert.assertTrue(assertsPage.secondBannerForGrid.exists(),
-                "There is no second banner type Image for Grid!");
-        $("img[src$='" + bannerNameFor_Grid + "']").scrollIntoView(false);
-        screenshot("100 BannerType_Image_Var1Test - first banner, Grid");
-        assertsPage.secondBannerForGrid.scrollIntoView(false);
-        screenshot("102 BannerType_Image_Var1Test - second banner, Grid");
+        //Из-за ошибки https://abteam.planfix.com/task/43074 пришлось делать условия на присутствие баннеров на странице категории
+        scrollAndScreenBanner(firstBannerName_Grid, "100 BannerType_Image_Var1Test - first banner, Grid");
+        softAssert.assertTrue($(".ut2-gl__banner img").getAttribute("src").contains(firstBannerName_Grid),
+                "There is no first banner of Image type for Grid!");
+        scrollAndScreenBanner(secondBannerName_Grid, "102 BannerType_Image_Var1Test - second banner, Grid");
+        softAssert.assertTrue(assertsPage.secondBannerForGrid.getAttribute("src").contains(secondBannerName_Grid),
+                "There is no second banner of Image type for Grid!");
+
+        categoryPage.productListView_ListWithoutOptions.hover().click();
+        Selenide.sleep(2000);
+        scrollAndScreenBanner(firstBannerName_WithoutOptions, "104 BannerType_Image_Var1Test - first banner, ListWithoutOptions");
+        softAssert.assertTrue($(".category-banner img").getAttribute("src").contains(firstBannerName_WithoutOptions),
+                "There is no first banner of Image type for ListWithoutOptions!");
+        scrollAndScreenBanner(secondBannerName_WithoutOptions, "106 BannerType_Image_Var1Test - second banner, ListWithoutOptions");
+        softAssert.assertTrue(assertsPage.secondBannerForListWithoutOptions.getAttribute("src").contains(secondBannerName_WithoutOptions),
+                "There is no second banner of Image type for ListWithoutOptions!");
+
+        categoryPage.productListView_CompactList.hover().click();
+        Selenide.sleep(2000);
+        scrollAndScreenBanner(firstBannerName_CompactList, "108 BannerType_Image_Var1Test - first banner, CompactList");
+        softAssert.assertTrue($(".category-banner img").getAttribute("src").contains(firstBannerName_CompactList),
+                "There is no first banner of Image type for CompactList!");
+        scrollAndScreenBanner(secondBannerName_CompactList, "110 BannerType_Image_Var1Test - second banner, CompactList");
+        softAssert.assertTrue(assertsPage.secondBannerForCompactList.getAttribute("src").contains(secondBannerName_CompactList),
+                "There is no second banner of Image type for CompactList!");
+
+        //Язык RTL
+        shiftToRTLLanguage();
+        Selenide.sleep(2000);
+        scrollAndScreenBanner(firstBannerName_CompactList, "112 BannerType_Image_Var1Test - first banner, CompactList (RTL)");
+        scrollAndScreenBanner(secondBannerName_CompactList, "114 BannerType_Image_Var1Test - second banner, CompactList (RTL)");
+
+        categoryPage.productListView_ListWithoutOptions.hover().click();
+        Selenide.sleep(2000);
+        scrollAndScreenBanner(firstBannerName_WithoutOptions, "116 BannerType_Image_Var1Test - first banner, ListWithoutOptions (RTL)");
+        scrollAndScreenBanner(secondBannerName_WithoutOptions, "118 BannerType_Image_Var1Test - second banner, ListWithoutOptions (RTL)");
+
+        categoryPage.productListView_Grid.hover().click();
+        Selenide.sleep(2000);
+        scrollAndScreenBanner(firstBannerName_Grid, "120 BannerType_Image_Var1Test - first banner, Grid (RTL)");
+        scrollAndScreenBanner(secondBannerName_Grid, "122 BannerType_Image_Var1Test - second banner, Grid (RTL)");
+        softAssert.assertAll(); //Есть ошибка видимости баннеров https://abteam.planfix.com/task/43074
     }
 }

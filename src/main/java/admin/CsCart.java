@@ -1,5 +1,6 @@
 package admin;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import storefront.CategoryPage;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,6 +18,7 @@ public class CsCart {
         menu_Products.hover();
         section_Categories.click();
         categoryElectronics.click();
+        Selenide.sleep(2000);
         gearwheelOfCategory.click();
         button_Preview.click();
         switchTo().window(tabNumber);

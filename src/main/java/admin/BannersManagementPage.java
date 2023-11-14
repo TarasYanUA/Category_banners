@@ -46,8 +46,8 @@ public class BannersManagementPage {
     SelenideElement folder_CategoryBanners = $("span[title='Пользовательские файлы/category_banner']");
     SelenideElement folder_8 = $("span[title='Пользовательские файлы/category_banner/8']");
     public void selectPictureForBanner(String picName){
-        if($x("//tbody//span[text()='" + picName + "']").exists()){
-            $x("//tbody//span[text()='" + picName + "']").doubleClick();
+        if($x("//tbody//span[contains(text(), '" + picName + "')]").exists()){
+            $x("//tbody//span[contains(text(), '" + picName + "')]").doubleClick();
         } else {
             folder_PublicFiles.click();
             folder_CategoryBanners.click();
@@ -55,8 +55,8 @@ public class BannersManagementPage {
             if ($("div[title='В виде списка']").exists()) {
                 $("div[title='В виде списка']").click();
             }
-            $x("//tbody//span[text()='" + picName + "']").click();
-            $x("//tbody//span[text()='" + picName + "']").doubleClick();
+            $x("//tbody//span[contains(text(), '" + picName + "')]").click();
+            $x("//tbody//span[contains(text(), '" + picName + "')]").doubleClick();
         }
     }
 
