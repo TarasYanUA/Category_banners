@@ -86,7 +86,8 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
         }
     }
 
-    @Test(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
+    //(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
+    @Test
     public void check_BannerType_Image_Var1Test(){
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
