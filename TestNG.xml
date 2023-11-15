@@ -1,7 +1,10 @@
 <suite name = "Category banners">
-    <test name = "Check banner types">
+    <test name = "Check banner types with colorscheme settings">
         <classes>
-
+            <class name = "BannerType_Image_Var1Test" />
+            <class name = "BannerType_Image_Var2Test" />
+            <class name = "BannerType_Image_Var3Test" />
+            <class name = "BannerType_Block_Blog_Var1Test" />
         </classes>
     </test>
 </suite>

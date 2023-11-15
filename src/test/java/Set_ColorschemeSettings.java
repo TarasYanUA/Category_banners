@@ -1,6 +1,8 @@
 import admin.ColorschemeSettings;
 
 public interface Set_ColorschemeSettings {
+    ColorschemeSettings colorschemeSettings = new ColorschemeSettings();
+
     /*
 Настройки цветосхемы:
         Вкладка "Общие":
@@ -13,7 +15,6 @@ public interface Set_ColorschemeSettings {
         - Добавить фон/маску для изображений товара -   нет
 */
     default void set_ColorschemeSettings_Var1() {
-        ColorschemeSettings colorschemeSettings = new ColorschemeSettings();
         colorschemeSettings.setting_RoundCornersForElements.selectOptionByValue("full");
         if (!colorschemeSettings.setting_RoundCornersOfBlocks.isSelected()) {
             colorschemeSettings.setting_RoundCornersOfBlocks.click();
@@ -41,7 +42,6 @@ public interface Set_ColorschemeSettings {
     - Добавить фон/маску для изображений товара -   нет
 */
     default void set_ColorschemeSettings_Var2() {
-        ColorschemeSettings colorschemeSettings = new ColorschemeSettings();
         colorschemeSettings.setting_RoundCornersForElements.selectOptionByValue("do_not_use");
         if(colorschemeSettings.setting_RoundCornersOfBlocks.isSelected()){
             colorschemeSettings.setting_RoundCornersOfBlocks.click();   }
@@ -66,7 +66,6 @@ public interface Set_ColorschemeSettings {
     - Добавить фон/маску для изображений товара -   да
 */
     default void set_ColorschemeSettings_Var3() {
-        ColorschemeSettings colorschemeSettings = new ColorschemeSettings();
         colorschemeSettings.setting_RoundCornersForElements.selectOptionByValue("little");
         if(!colorschemeSettings.setting_RoundCornersOfBlocks.isSelected()){
             colorschemeSettings.setting_RoundCornersOfBlocks.click();   }

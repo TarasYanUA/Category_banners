@@ -38,14 +38,7 @@ public class BannerType_Image_Var2Test extends TestRunner implements Set_Colorsc
         set_ColorschemeSettings_Var2();
 
         //Работаем с баннерами
-        BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        if(!bannersManagementPage.status_Disabled.isEmpty()){   //если присутствует статус "Выкл.", то включаем баннер
-            for(int i = 0; i <= bannersManagementPage.status_Disabled.size(); i++){
-                bannersManagementPage.status_Disabled.get(i).shouldBe(Condition.enabled).click();
-                $x("//div[contains(@class, 'dropleft open')]//a[@title='Вкл.']").click();
-            }
-        }
-        //Работаем с первым баннером
+        csCart.navigateToPage_BannersManagement();
         set_ImageForBanner();
     }
 
