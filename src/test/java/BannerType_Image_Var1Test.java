@@ -25,7 +25,7 @@ import static com.codeborne.selenide.Selenide.*;
 * Позиция -         2
 */
 
-public class BannerType_Image_Var1Test extends TestRunner implements ScrollToAndScreenBanner {
+public class BannerType_Image_Var1Test extends TestRunner implements Set_ColorschemeSettings, Set_ImageForBanner, ScrollToAndScreenBanner {
     @Test(priority = 1)
     public void setConfiguration_BannerType_Image_Var1Test() {
         CsCart csCart = new CsCart();
@@ -34,17 +34,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements ScrollToAnd
         colorschemeSettings.fieldOfActiveColorscheme.click();
         colorschemeSettings.activateColorscheme.click();
         Selenide.sleep(2000);
-
-        colorschemeSettings.setting_RoundCornersForElements.selectOptionByValue("full");
-        if(!colorschemeSettings.setting_RoundCornersOfBlocks.isSelected()){
-            colorschemeSettings.setting_RoundCornersOfBlocks.click();   }
-        if(colorschemeSettings.setting_DisplayHeadersInCapitalLetters.isSelected()){
-            colorschemeSettings.setting_DisplayHeadersInCapitalLetters.click(); }
-        colorschemeSettings.tab_ProductLists.click();
-        colorschemeSettings.setting_FrameType.selectOptionByValue("solid_without_margins");
-        if(colorschemeSettings.setting_MaskForProductImages.isSelected()){
-            colorschemeSettings.setting_MaskForProductImages.click();   }
-        colorschemeSettings.button_Save.click();
+        set_ColorschemeSettings_Var1();
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
@@ -55,35 +45,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements ScrollToAnd
             }
         }
         //Работаем с первым баннером
-        if(!$x("//a[text()='Autobanner of Image type 01']").exists()) {
-            bannersManagementPage.selectLanguageRTL();
-            $("a[href$='category_banner_id=1']").click();
-            bannersManagementPage.clickAndType_field_Name("Autobanner of Image type 01");
-            bannersManagementPage.typeImage_Grid.click();
-            bannersManagementPage.button_ServerGrid.click();
-            bannersManagementPage.selectPictureForBanner(firstBannerName_Grid);
-            bannersManagementPage.typeImage_WithoutOptions.click();
-            bannersManagementPage.button_ServerWithoutOptions.click();
-            bannersManagementPage.selectPictureForBanner(firstBannerName_WithoutOptions);
-            bannersManagementPage.typeImage_Compact.click();
-            bannersManagementPage.button_ServerCompact.click();
-            bannersManagementPage.selectPictureForBanner(firstBannerName_CompactList);
-            bannersManagementPage.clickAndType_field_Position("2");
-            bannersManagementPage.button_Save.click();
-
-            bannersManagementPage.selectLanguageRU();
-            bannersManagementPage.clickAndType_field_Name("Autobanner of Image type 01");
-            bannersManagementPage.typeImage_Grid.click();
-            bannersManagementPage.button_ServerGrid.click();
-            bannersManagementPage.selectPictureForBanner(firstBannerName_Grid);
-            bannersManagementPage.typeImage_WithoutOptions.click();
-            bannersManagementPage.button_ServerWithoutOptions.click();
-            bannersManagementPage.selectPictureForBanner(firstBannerName_WithoutOptions);
-            bannersManagementPage.typeImage_Compact.click();
-            bannersManagementPage.button_ServerCompact.click();
-            bannersManagementPage.selectPictureForBanner(firstBannerName_CompactList);
-            bannersManagementPage.button_Save.click();
-        }
+        set_ImageForBanner();
     }
 
     @Test (priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
