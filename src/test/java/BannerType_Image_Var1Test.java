@@ -34,6 +34,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
         colorschemeSettings.fieldOfActiveColorscheme.click();
         colorschemeSettings.activateColorscheme.click();
         Selenide.sleep(2000);
+
         colorschemeSettings.setting_RoundCornersForElements.selectOptionByValue("full");
         if(!colorschemeSettings.setting_RoundCornersOfBlocks.isSelected()){
             colorschemeSettings.setting_RoundCornersOfBlocks.click();   }
@@ -54,11 +55,12 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
             }
         }
         //Работаем с первым баннером
-        if(!$x("//a[text()='Autobanner of Image type 01']").exists()) {
+        //if(!$x("//a[text()='Autobanner of Image type 01']").exists()) {
             bannersManagementPage.selectLanguageRTL();
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.clickAndType_field_Name("Autobanner of Image type 01");
             bannersManagementPage.typeImage_Grid.click();
+            bannersManagementPage.button_ServerGrid.click();
             bannersManagementPage.selectPictureForBanner(firstBannerName_Grid);
             bannersManagementPage.typeImage_WithoutOptions.click();
             bannersManagementPage.button_ServerWithoutOptions.click();
@@ -72,6 +74,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
             bannersManagementPage.selectLanguageRU();
             bannersManagementPage.clickAndType_field_Name("Autobanner of Image type 01");
             bannersManagementPage.typeImage_Grid.click();
+            bannersManagementPage.button_ServerGrid.click();
             bannersManagementPage.selectPictureForBanner(firstBannerName_Grid);
             bannersManagementPage.typeImage_WithoutOptions.click();
             bannersManagementPage.button_ServerWithoutOptions.click();
@@ -80,7 +83,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements BannersImag
             bannersManagementPage.button_ServerCompact.click();
             bannersManagementPage.selectPictureForBanner(firstBannerName_CompactList);
             bannersManagementPage.button_Save.click();
-        }
+        //}
     }
 
     @Test(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var1Test")
