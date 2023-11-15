@@ -1,6 +1,7 @@
 package admin;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -46,6 +47,8 @@ public class BannersManagementPage {
     SelenideElement folder_CategoryBanners = $("span[title='Пользовательские файлы/category_banner']");
     SelenideElement folder_8 = $("span[title='Пользовательские файлы/category_banner/8']");
     public void selectPictureForBanner(String picName){
+        button_ServerGrid.click();
+        Selenide.sleep(1000);
         if($x("//tbody//span[contains(text(), '" + picName + "')]").exists()){
             $x("//tbody//span[contains(text(), '" + picName + "')]").doubleClick();
         } else {

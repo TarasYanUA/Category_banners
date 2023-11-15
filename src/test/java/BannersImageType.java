@@ -13,7 +13,7 @@ public interface BannersImageType {
 
 
 //Из-за ошибки https://abteam.planfix.com/task/43074 пришлось делать условия на присутствие баннеров на странице категории и обновлять страницу, если баннер отсутствует
-    default void scrollAndScreenBanner(String bannerName, String screenshotName) {
+    default void scrollToAndScreenBanner(String bannerName, String screenshotName) {
         if(!$("img[src*='" + bannerName + "']").exists()){
             Selenide.refresh();
             Selenide.sleep(2000);
