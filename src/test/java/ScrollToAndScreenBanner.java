@@ -3,7 +3,7 @@ import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
 
-public interface BannersImageType {
+public interface ScrollToAndScreenBanner {
     String firstBannerName_Grid = "category_banners_main_image-1";
     String firstBannerName_WithoutOptions = "category_banners_list_image-1";
     String firstBannerName_CompactList = "category_banners_short_list_pair-1";
