@@ -96,5 +96,4 @@ public class BannersManagementPage {
             $x("//tbody//span[contains(text(), '" + picName + "')]").doubleClick();
         }
     }
-
 }

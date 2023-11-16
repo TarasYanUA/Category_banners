@@ -1,7 +1,5 @@
-import admin.BannersManagementPage;
 import admin.ColorschemeSettings;
 import admin.CsCart;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -25,16 +23,13 @@ import static com.codeborne.selenide.Selenide.*;
 * Позиция -         2
 */
 
-public class BannerType_Image_Var1Test extends TestRunner implements Set_ColorschemeSettings, Set_ImageForBanner, ScrollToAndScreenBanner {
+public class BannerType_Image_Var1Test extends TestRunner implements Set_ImageForBanner, ScrollToAndScreenBanner {
     @Test(priority = 1)
     public void setConfiguration_BannerType_Image_Var1Test() {
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
-        colorschemeSettings.fieldOfActiveColorscheme.click();
-        colorschemeSettings.activateColorscheme.click();
-        Selenide.sleep(2000);
-        set_ColorschemeSettings_Var1();
+        colorschemeSettings.set_ColorschemeSettings_Var1();
 
         //Работаем с баннерами
         csCart.navigateToPage_BannersManagement();

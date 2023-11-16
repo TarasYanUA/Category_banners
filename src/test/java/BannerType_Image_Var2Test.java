@@ -26,16 +26,13 @@ import static com.codeborne.selenide.Selenide.$x;
 * Позиция -         2
 */
 
-public class BannerType_Image_Var2Test extends TestRunner implements Set_ColorschemeSettings, Set_ImageForBanner, ScrollToAndScreenBanner {
+public class BannerType_Image_Var2Test extends TestRunner implements Set_ImageForBanner, ScrollToAndScreenBanner {
     @Test(priority = 1)
     public void setConfiguration_BannerType_Image_Var2Test() {
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
-        colorschemeSettings.fieldOfActiveColorscheme.click();
-        colorschemeSettings.activateColorscheme.click();
-        Selenide.sleep(2000);
-        set_ColorschemeSettings_Var2();
+        colorschemeSettings.set_ColorschemeSettings_Var2();
 
         //Работаем с баннерами
         csCart.navigateToPage_BannersManagement();
