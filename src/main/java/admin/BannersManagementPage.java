@@ -26,6 +26,8 @@ public class BannersManagementPage {
         field_Name.clear();
         field_Name.sendKeys(name);
     }
+    public SelenideElement setting_BlockSettings = $("#ajax_update_block_products_multicolumns .cs-icon.icon-cog");
+
 
     //Настройки для Вид списка "Сетка"
     public SelenideElement typeImage_Grid = $("input#image_products_multicolumns[value='I']");
