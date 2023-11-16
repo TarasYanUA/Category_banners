@@ -47,7 +47,7 @@ public class BannersManagementPage {
     public SelenideElement typeBlock_WithoutOptions = $("#block_products_without_options");
     public SelenideElement button_Server_WithoutOptions = $x("(//a[contains(@id, 'server_')])[2]");
     public SelenideElement button_SelectBlock_WithoutOptions = $("#opener_select_block_products_without_options");
-    public SelenideElement setting_Wrapper_WithoutOptions = $("#opener_select_block_products_without_options");
+    public SelenideElement setting_Wrapper_WithoutOptions = $("#products_without_options_wrapper");
     SelenideElement setting_CssClass_WithoutOptions = $("#elm_category_banner_products_without_options_user_class");
     public void clickAndTypeSetting_CssClass_WithoutOptions(String value){
         setting_CssClass_WithoutOptions.click();

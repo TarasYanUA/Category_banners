@@ -1,7 +1,6 @@
 import admin.BannersManagementPage;
 import admin.ColorschemeSettings;
 import admin.CsCart;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.Test;
 
@@ -49,51 +48,15 @@ public class BannerType_Block_Blog_Var1Test extends TestRunner implements Set_Co
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.clickAndType_field_Name("Autobanner for Blog");
             set_BlockForBanner_Grid("Блог", "--", "");
-//ЗДЕСЬ ОСТАНОВИЛСЯ
-
-
-            bannersManagementPage.typeBlock_WithoutOptions.click();
-            bannersManagementPage.button_SelectBlock_WithoutOptions.click();
-            $(".ui-dialog-title").shouldBe(Condition.enabled);
-            $("strong[title='Блог']").click();
-            bannersManagementPage.setting_Wrapper_WithoutOptions.selectOptionContainingText("--");
-            bannersManagementPage.clickAndTypeSetting_CssClass_WithoutOptions("");
-
-            bannersManagementPage.typeBlock_Compact.click();
-            bannersManagementPage.button_SelectBlock_Compact.click();
-            $(".ui-dialog-title").shouldBe(Condition.enabled);
-            $("strong[title='Блог']").click();
-            bannersManagementPage.setting_Wrapper_Compact.selectOptionContainingText("--");
-            bannersManagementPage.clickAndTypeSetting_CssClass_Compact("");
+            set_BlockForBanner_WithoutOptions("Блог", "--", "");
+            set_BlockForBanner_Compact("Блог", "--", "");
             bannersManagementPage.clickAndType_field_Position("2");
             bannersManagementPage.button_Save.click();
 
             bannersManagementPage.selectLanguageRTL();
-            bannersManagementPage.clickAndType_field_Name("Autobanner for Blog");
-            bannersManagementPage.typeBlock_Grid.click();
-            bannersManagementPage.button_SelectBlock_Grid.click();
-            $(".ui-dialog-title").shouldBe(Condition.enabled);
-            $("strong[title='Blog']").click();
-            if(!bannersManagementPage.setting_Full_width.isSelected()){
-                bannersManagementPage.setting_Full_width.click();
-            }
-            bannersManagementPage.setting_Wrapper_Grid.selectOptionContainingText("--");
-            bannersManagementPage.clickAndTypeSetting_CssClass_Grid("");
-
-            bannersManagementPage.typeBlock_WithoutOptions.click();
-            bannersManagementPage.button_SelectBlock_WithoutOptions.click();
-            $(".ui-dialog-title").shouldBe(Condition.enabled);
-            $("strong[title='Blog']").click();
-            bannersManagementPage.setting_Wrapper_WithoutOptions.selectOptionContainingText("--");
-            bannersManagementPage.clickAndTypeSetting_CssClass_WithoutOptions("");
-
-            bannersManagementPage.typeBlock_Compact.click();
-            bannersManagementPage.button_SelectBlock_Compact.click();
-            $(".ui-dialog-title").shouldBe(Condition.enabled);
-            $("strong[title='Blog']").click();
-            bannersManagementPage.setting_Wrapper_Compact.selectOptionContainingText("--");
-            bannersManagementPage.clickAndTypeSetting_CssClass_Compact("");
-            bannersManagementPage.clickAndType_field_Position("2");
+            set_BlockForBanner_Grid("Blog", "--", "");
+            set_BlockForBanner_WithoutOptions("Blog", "--", "");
+            set_BlockForBanner_Compact("Blog", "--", "");
             bannersManagementPage.button_Save.click();
         }
     }
