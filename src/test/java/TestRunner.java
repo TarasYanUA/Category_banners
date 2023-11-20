@@ -34,9 +34,6 @@ public class TestRunner {
         Selenide.closeWebDriver();
     }
 
-    public void shiftBrowserTab(int tabNumber){
-        switchTo().window(tabNumber);
-    }
     public void shiftToRTLLanguage() {
         $("a[id*='sw_select'][id*='wrap_language']").scrollTo().click();
         $("a[data-ca-name='ar']").click();

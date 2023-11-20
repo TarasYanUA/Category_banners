@@ -4,7 +4,7 @@
             <class name = "BannerType_Image_Var1Test" />
             <class name = "BannerType_Image_Var2Test" />
             <class name = "BannerType_Image_Var3Test" />
-            <class name = "BannerType_Block_Blog_TextLinks_Var1Test" />
+            <class name = "BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test" />
         </classes>
     </test>
 </suite>

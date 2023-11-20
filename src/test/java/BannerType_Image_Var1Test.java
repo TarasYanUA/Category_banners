@@ -78,8 +78,7 @@ public class BannerType_Image_Var1Test extends TestRunner implements Set_ImageFo
         scrollToAndScreenBanner(firstBannerName_WithoutOptions, "116 BannerType_Image_Var1Test - first banner, ListWithoutOptions (RTL)");
         scrollToAndScreenBanner(secondBannerName_WithoutOptions, "118 BannerType_Image_Var1Test - second banner, ListWithoutOptions (RTL)");
 
-        categoryPage.productListView_Grid.hover().click();
-        Selenide.sleep(2000);
+
         scrollToAndScreenBanner(firstBannerName_Grid, "120 BannerType_Image_Var1Test - first banner, Grid (RTL)");
         scrollToAndScreenBanner(secondBannerName_Grid, "122 BannerType_Image_Var1Test - second banner, Grid (RTL)");
         softAssert.assertAll(); //Есть ошибка видимости баннеров https://abteam.planfix.com/task/43074
