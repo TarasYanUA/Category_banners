@@ -1,3 +1,5 @@
+package blog;
+
 import admin.BannersManagementPage;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Selenide.$;

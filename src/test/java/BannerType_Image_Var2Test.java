@@ -1,14 +1,11 @@
-import admin.BannersManagementPage;
 import admin.ColorschemeSettings;
 import admin.CsCart;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import storefront.AssertsPage;
 import storefront.CategoryPage;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 
 /*
 Настройки цветосхемы:
