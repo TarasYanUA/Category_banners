@@ -8,7 +8,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -28,7 +27,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Блок -            Блог
 * На всю ширину -   да
 * Оболочка -        нет
-* Пользовательский CSS-класс - нет
+* Пользовательский CSS-класс - fill--color
 * Позиция -         6
 
 Настройки блока "Блог":
@@ -51,20 +50,16 @@ public class BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test extends TestRu
             $x("//a[@id='sw_select_2_wrap'][contains(text(), 'Вкл.')]").click();
             $x("//div[contains(@class, 'dropleft open')]//a[@title='Выкл.']").click();
         }
-        if(!$x("//a[text()='blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test']").exists()) {
+        if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
-            bannersManagementPage.clickAndType_field_Name("blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test");
-            set_BlockForBanner_Grid("Блог", "--", "");
-            set_BlockForBanner_WithoutOptions("Блог", "--", "");
-            set_BlockForBanner_Compact("Блог", "--", "");
+            bannersManagementPage.clickAndType_field_Name("BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test");
+            set_BlockForBanner_Grid("Блог", "--", "fill--color");
+            set_BlockForBanner_WithoutOptions("Блог", "--", "fill--color");
+            set_BlockForBanner_Compact("Блог", "--", "fill--color");
             bannersManagementPage.clickAndType_field_Position("6");
             bannersManagementPage.button_Save.click();
-
             bannersManagementPage.selectLanguageRTL();
-            bannersManagementPage.clickAndType_field_Name("blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test");
-            set_BlockForBanner_Grid("Blog", "--", "");
-            set_BlockForBanner_WithoutOptions("Blog", "--", "");
-            set_BlockForBanner_Compact("Blog", "--", "");
+            bannersManagementPage.clickAndType_field_Name("BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test");
             bannersManagementPage.button_Save.click();
 
             //Работаем с настройками блока "Блог"
@@ -79,22 +74,22 @@ public class BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test extends TestRu
     public void check_BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner_TextLinks("500 blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - Grid");
+        categoryPage.scrollToAndScreenBanner_TextLinks("500 BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - Grid");
         categoryPage.productListView_ListWithoutOptions.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("502 blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner_TextLinks("502 BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - WithoutOptions");
         categoryPage.productListView_CompactList.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("504 blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - CompactList");
+        categoryPage.scrollToAndScreenBanner_TextLinks("504 BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - CompactList");
 
         shiftToRTLLanguage();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("506 blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner_TextLinks("506 BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("508 blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner_TextLinks("508 BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("510 blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner_TextLinks("510 BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test - Grid (RTL)");
     }
 }
