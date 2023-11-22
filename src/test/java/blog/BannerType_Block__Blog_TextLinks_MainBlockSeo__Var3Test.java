@@ -59,10 +59,6 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test extends Tes
             bannersManagementPage.clickAndType_field_Position("6");
             bannersManagementPage.button_Save.click();
 
-            bannersManagementPage.selectLanguageRTL();
-            bannersManagementPage.clickAndType_field_Name("BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test");
-            bannersManagementPage.button_Save.click();
-
             //Работаем с настройками блока "Блог"
             bannersManagementPage.setting_BlockSettings.click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
