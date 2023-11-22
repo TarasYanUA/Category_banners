@@ -7,6 +7,7 @@ import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import interfaces_TestRunner.Set_BlockForBanner;
+import interfaces_TestRunner.SwitchOffSecondBanner;
 import interfaces_TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
@@ -39,7 +40,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Макс. число элементов - 5
 */
 
-public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends TestRunner implements Set_BlockForBanner {
+public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends TestRunner implements Set_BlockForBanner, SwitchOffSecondBanner {
     @Test
     public void setConfiguration_BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test(){
         CsCart csCart = new CsCart();
@@ -49,10 +50,7 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends Tes
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        if($x("//a[@id='sw_select_2_wrap'][contains(text(), 'Вкл.')]").exists()){   //если баннер2 "Вкл.", то отключаем его
-            $x("//a[@id='sw_select_2_wrap'][contains(text(), 'Вкл.')]").click();
-            $x("//div[contains(@class, 'dropleft open')]//a[@title='Выкл.']").click();
-        }
+        switchOffSecondBanner();
         if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.clickAndType_field_Name("BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test");
