@@ -15,6 +15,7 @@
             <class name = "blog.BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test" />
             <class name = "blog.BannerType_Block__Blog_TextLinks_SecondaryFramedBlock__Var3Test" />
             <class name = "blog.BannerType_Block__Blog_ABBlogRecentPosts_NoWrapper__Var1Test" />11
+            <class name = "blog.BannerType_Block__Blog_ABBlogRecentPosts_NoWrapper__Var3Test" />
         </classes>
     </test>
 </suite>
