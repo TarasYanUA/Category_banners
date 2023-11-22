@@ -1,5 +1,6 @@
 package admin;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -20,8 +21,20 @@ public class Block_Blog {
 
     public void set_Blog_TextLinks(){   //Заполнение не нужно, так как здесь только одно заполнение
         template.selectOptionByValue("addons/blog/blocks/text_links.tpl");
+        if($("#ajax_loading_box[style*='display:']").exists()){
+            $("#ajax_loading_box[style='display: none;']").shouldBe(Condition.exist);
+        }
         tab_Content.click();
         clickAndType_Limit("5");
+        button_Save.click();
+    }
+    public void set_Blog_ABBlogRecentPosts(String fillingValue){
+        template.selectOptionByValue("addons/blog/blocks/abt_ut2_recent_posts.tpl");
+        if($("#ajax_loading_box[style*='display:']").exists()){
+            $("#ajax_loading_box[style='display: none;']").shouldBe(Condition.exist);
+        }
+        tab_Content.click();
+        filling.selectOptionByValue(fillingValue);
         button_Save.click();
     }
 }

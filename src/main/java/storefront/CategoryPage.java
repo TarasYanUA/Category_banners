@@ -19,4 +19,11 @@ public class CategoryPage {
         $(".ty-blog-text-links").scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
         screenshot(screenshotName);
     }
+    public void scrollToAndScreenBanner_ABBlogRecentPosts(String screenshotName){
+        if($("#ajax_loading_box[style*='display:']").exists()){
+            $("#ajax_loading_box[style='display: none;']").shouldBe(Condition.exist);
+        }
+        $(".category-banner-block").scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
+        screenshot(screenshotName);
+    }
 }
