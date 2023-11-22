@@ -50,6 +50,7 @@ public class BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test extends TestRu
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         switchOffSecondBanner();
+
         if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.clickAndType_field_Name("BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test");
