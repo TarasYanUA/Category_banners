@@ -1,4 +1,4 @@
-package blog;
+package interfaces_TestRunner;
 
 import admin.BannersManagementPage;
 import com.codeborne.selenide.Condition;

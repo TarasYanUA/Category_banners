@@ -3,6 +3,7 @@ package image;
 import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Selenide;
+import interfaces_TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import storefront.AssertsPage;

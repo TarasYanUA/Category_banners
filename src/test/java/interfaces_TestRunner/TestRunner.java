@@ -1,4 +1,4 @@
-package blog;/*
+package interfaces_TestRunner;/*
 Модуль "Баннеры для категорий" v3.0.0 + тема Юни2(UltRu) v4.17.1d. Можно установить весь пакет темы Юни2.
 Работает во всех браузерах!
 
@@ -12,8 +12,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class TestRunner {
     public static final String BASIC_URL = "https://trs.test.abt.team/4171ultru/admin.php?dispatch=addons.manage";
