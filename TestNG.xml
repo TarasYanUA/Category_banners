@@ -1,12 +1,18 @@
 <suite name = "Category banners">
     <test name = "Check banner types with colorscheme settings">
         <classes>
-            <class name = "BannerType_Image_Var1Test" />
-            <class name = "BannerType_Image_Var2Test" />
-            <class name = "BannerType_Image_Var3Test" />
+            <!--Тест-кейсы для баннеров типа "Изображения" -->
+            <class name = "image.BannerType_Image_Var1Test" />
+            <class name = "image.BannerType_Image_Var2Test" />
+            <class name = "image.BannerType_Image_Var3Test" />
+
+            <!--Тест-кейсы для баннеров Блога -->
             <class name = "blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test" />
             <class name = "blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test" />
             <class name = "blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var3Test" />
+            <class name = "blog.BannerType_Block__Blog_TextLinks_MainBlockSeo__Var1Test" />
+            <class name = "blog.BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test" />
+            <class name = "blog.BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test" />
         </classes>
     </test>
 </suite>

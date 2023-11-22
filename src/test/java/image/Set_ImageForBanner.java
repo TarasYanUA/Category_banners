@@ -1,3 +1,5 @@
+package image;
+
 import admin.BannersManagementPage;
 import com.codeborne.selenide.Condition;
 
