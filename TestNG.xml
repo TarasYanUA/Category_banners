@@ -13,11 +13,13 @@
             <class name = "blog.BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test" />
             <class name = "blog.BannerType_Block__Blog_TextLinks_SimplifiedBlock__Var1Test" />
             <class name = "blog.BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test" />
-            <class name = "blog.BannerType_Block__Blog_TextLinks_SecondaryFramedBlock__Var3Test" />10
-            <class name = "blog.BannerType_Block__Blog_ABBlogRecentPosts_NoWrapper__Var1Test" />
-            <class name = "blog.BannerType_Block__Blog_ABBlogRecentPosts_NoWrapper__Var3Test" />
-            <class name = "blog.BannerType_Block__Blog_ABBlogRecentPosts_MainBlockSeo__Var2Test" />
-            <class name = "blog.BannerType_Block__Blog_ABBlogRecentPosts_SimplifiedBlock__Var1Test" />14
+            <class name = "blog.BannerType_Block__Blog_TextLinks_SecondaryFramedBlock__Var3Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_MainBlockSeo__Var2Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryBlock__Var2Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryFramedBlock__Var3Test" />16
         </classes>
     </test>
 </suite>
