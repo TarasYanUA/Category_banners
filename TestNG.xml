@@ -19,7 +19,12 @@
             <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_MainBlockSeo__Var2Test" />
             <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test" />
             <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryBlock__Var2Test" />
-            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryFramedBlock__Var3Test" />16
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryFramedBlock__Var3Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_MainBlockSeo__Var2Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_SecondaryBlock__Var1Test" />
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test" />21
         </classes>
     </test>
 </suite>

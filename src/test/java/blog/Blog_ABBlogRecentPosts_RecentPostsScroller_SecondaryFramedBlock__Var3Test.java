@@ -62,7 +62,7 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryFramedBlock__Va
             bannersManagementPage.setting_BlockSettings.click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_Blog blockBlog = new Block_Blog();
-            blockBlog.set_Blog_ABBlogRecentPosts("blog.recent_posts_scroller");
+            blockBlog.set_Blog_ABBlog_RecentPostsScroller("blog.recent_posts_scroller");
         }
     }
 
