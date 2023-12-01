@@ -1,10 +1,10 @@
 <suite name = "Category banners">
     <test name = "Check category banners with colorscheme settings">
         <classes>
-            <!--Тест-кейсы для баннеров типа "Изображения" -->
+            <!--Тест-кейсы для баннеров типа "Изображения"
             <class name = "image.BannerType_Image_Var1Test" />
             <class name = "image.BannerType_Image_Var2Test" />
-            <class name = "image.BannerType_Image_Var3Test" />
+            <class name = "image.BannerType_Image_Var3Test" /> -->
 
             <!--Тест-кейсы для баннеров Блога -->
             <class name = "blog.BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test" />

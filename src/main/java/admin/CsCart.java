@@ -54,4 +54,14 @@ public class CsCart {
         gearwheel_CategoryBanners.click();
         section_GeneralSettings.click();
     }
+
+    SelenideElement gearwheel_AddonsManager = $("#addon_ab__addons_manager").$(".nowrap.inline-block-basic");
+    SelenideElement section_ListOfAvailableAddons = $("#addon_ab__addons_manager a[href$='ab__am.addons']");
+    public void navigateToPage_ListOfAvailableAddons(){
+        menu_Addons.hover();
+        section_DownloadedAddons.click();
+        gearwheel_AddonsManager.click();
+        section_ListOfAvailableAddons.click();
+    }
+
 }
