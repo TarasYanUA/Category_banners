@@ -46,9 +46,9 @@ import static com.codeborne.selenide.Selenide.$x;
     * Количество видео -            10
 */
 
-public class BannerType_Block_VideoGallery_Var1Test extends TestRunner implements AddVideo, Set_BlockForBanner, SwitchOffSecondBanner {
+public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunner implements AddVideo, Set_BlockForBanner, SwitchOffSecondBanner {
     @Test(priority = 1)
-    public void setConfiguration_BannerType_Block_VideoGallery_Var1Test(){
+    public void setConfiguration_BannerType_Block_VideoGallery__NoWrapper__Var1Test(){
         CsCart csCart = new CsCart();
         csCart.installAddonAtAddonsManager(csCart.gearwheel_VideoGallery, "ab__video_gallery", "form[name=ab_install_form_54312]");
         addVideo();
@@ -61,9 +61,9 @@ public class BannerType_Block_VideoGallery_Var1Test extends TestRunner implement
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         switchOffSecondBanner();
-        if(!$x("//a[text()='BannerType_Block_VideoGallery_Var1Test']").exists()) {
+        if(!$x("//a[text()='BannerType_Block_VideoGallery__NoWrapper__Var1Test']").exists()) {
             $("a[href$='category_banner_id=3']").click();
-            bannersManagementPage.clickAndType_field_Name("BannerType_Block_VideoGallery_Var1Test");
+            bannersManagementPage.clickAndType_field_Name("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
             set_BlockForBanner_Grid("Видео товаров", "--", "");
             set_BlockForBanner_WithoutOptions("Видео товаров", "--", "");
             set_BlockForBanner_Compact("Видео товаров", "--", "");
@@ -78,27 +78,26 @@ public class BannerType_Block_VideoGallery_Var1Test extends TestRunner implement
         }
     }
 
-    //(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Block_VideoGallery_Var1Test")
-    @Test
+    @Test(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Block_VideoGallery__NoWrapper__Var1Test")
     public void check_BannerType_Block_VideoGallery_Var1Test(){
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner_VideoGallery("2200 BannerType_Block_VideoGallery_Var1Test - Grid");
+        categoryPage.scrollToAndScreenBanner_VideoGallery("2200 BannerType_Block_VideoGallery__NoWrapper__Var1Test - Grid");
         categoryPage.productListView_ListWithoutOptions.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_VideoGallery("2202 BannerType_Block_VideoGallery_Var1Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner_VideoGallery("2202 BannerType_Block_VideoGallery__NoWrapper__Var1Test - WithoutOptions");
         categoryPage.productListView_CompactList.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_VideoGallery("2204 BannerType_Block_VideoGallery_Var1Test - CompactList");
+        categoryPage.scrollToAndScreenBanner_VideoGallery("2204 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList");
 
         shiftToRTLLanguage();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_VideoGallery("2206 BannerType_Block_VideoGallery_Var1Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner_VideoGallery("2206 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_VideoGallery("2208 BannerType_Block_VideoGallery_Var1Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner_VideoGallery("2208 BannerType_Block_VideoGallery__NoWrapper__Var1Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.hover().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_VideoGallery("2210 BannerType_Block_VideoGallery_Var1Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner_VideoGallery("2210 BannerType_Block_VideoGallery__NoWrapper__Var1Test - Grid (RTL)");
     }
 }
