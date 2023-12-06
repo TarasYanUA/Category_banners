@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class Block_Blog {
     public Block_Blog(){super();}
 
-    //Шаблон "Блог: Текстовые ссылки"
     SelenideElement template = $("select[id*='blog_template']");
     SelenideElement tab_Content = $("li[id*='block_contents']");
     SelenideElement filling = $("select[id*='content_items_filling']");

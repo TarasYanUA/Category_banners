@@ -1,6 +1,7 @@
 package storefront;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
@@ -25,5 +26,18 @@ public class CategoryPage {
         }
         $(".category-banner-block").scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
         screenshot(screenshotName);
+    }
+    public void scrollToAndScreenBanner_VideoGallery(String screenshotName){
+        if($("#ajax_loading_box[style*='display:']").exists()){
+            $("#ajax_loading_box[style='display: none;']").shouldBe(Condition.exist);
+        }
+        if(!$(".category-banner-block").exists()){
+            Selenide.refresh();
+            Selenide.sleep(2000);
+        }
+        if($(".category-banner-block").exists()){
+            $(".category-banner-block").scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
+            screenshot(screenshotName);
+        }
     }
 }

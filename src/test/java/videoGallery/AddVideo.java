@@ -1,18 +1,18 @@
-package videogallery;
+package videoGallery;
 
 import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public interface AddVideo {
+public interface AddVideo{
     default void addVideo() {
         //Переходим на страницу редактирования товара
-        $x("//li[@class='dropdown nav__header-main-menu-item ']//a[@href='#products']").hover();
+        $("a[href='#products']").hover();
         $x("//span[text()='Товары']").click();
         if ($(".cm-notification-close").exists()) {
             $(".cm-notification-close").click();
         }
-        $x("//td[@class='product-name-column wrap-word']//a[contains(text(), 'adizero Rush Shoes')]").click();
+        $x("//td[@class='product-name-column wrap-word']//a[contains(text(), 'Apple - iPhone 5c')]").click();
         $("#ab__video_gallery").click();
 
         if ($$("tr[id*='ab__vg_video_extra']").size() == 1) {
@@ -35,27 +35,23 @@ public interface AddVideo {
             $("#ab__vg__video_path__1_1").click();
             $("#ab__vg__video_path__1_1").setValue("154625007");
 
-            //Добавляем видео типа "Ссылка"
+            //Добавляем видео с YouTube
             $("#add_ab__vg_video_1").click();
-            $(By.name("product_data[ab__vg_videos][4][pos]")).click();
-            $(By.name("product_data[ab__vg_videos][4][pos]")).setValue("30");
+            $x("//input[@name='product_data[ab__vg_videos][4][pos]']").click();
+            $x("//input[@name='product_data[ab__vg_videos][4][pos]']").setValue("30");
             $(By.name("product_data[ab__vg_videos][4][title]")).click();
-            $(By.name("product_data[ab__vg_videos][4][title]")).setValue("Ego TV serial");
-            $(By.name("product_data[ab__vg_videos][4][type]")).click();
-            $(By.name("product_data[ab__vg_videos][4][type]")).selectOption("Ссылка");
+            $(By.name("product_data[ab__vg_videos][4][title]")).setValue("AUROSONIC - 30 VOCAL TRANCE HITS");
             $("#ab__vg__video_path__1_1_2").click();
-            $("#ab__vg__video_path__1_1_2").setValue("https://ashdi.vip/vod/91121");
+            $("#ab__vg__video_path__1_1_2").setValue("ABDHiwJXTag");
 
-            //Добавляем видео типа "Ресурс"
+            //Добавляем видео с YouTube
             $("#add_ab__vg_video_1_2").click();
-            $(By.name("product_data[ab__vg_videos][7][pos]")).click();
-            $(By.name("product_data[ab__vg_videos][7][pos]")).setValue("40");
+            $x("//input[@name='product_data[ab__vg_videos][7][pos]']").click();
+            $x("//input[@name='product_data[ab__vg_videos][7][pos]']").setValue("40");
             $(By.name("product_data[ab__vg_videos][7][title]")).click();
-            $(By.name("product_data[ab__vg_videos][7][title]")).setValue("Fire Long name: Значение этой настройки будет напрямую встроено в код. Будьте внимательны, заполняя её значение");
-            $(By.name("product_data[ab__vg_videos][7][type]")).click();
-            $(By.name("product_data[ab__vg_videos][7][type]")).selectOption("Ресурс");
+            $(By.name("product_data[ab__vg_videos][7][title]")).setValue("TREE OF LIFE - Beautiful Inspirational Orchestral Music Mix");
             $("#ab__vg__video_path__1_1_2_3").click();
-            $("#ab__vg__video_path__1_1_2_3").setValue("https://unitheme.net/images/ut2_banner_videos/33_52_ABSTRACT.mp4");
+            $("#ab__vg__video_path__1_1_2_3").setValue("SA7uXNeVRjs");
             $(".cm-product-save-buttons").hover().click();
         }
     }

@@ -24,7 +24,8 @@
             <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_MainBlockSeo__Var2Test" />
             <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test" />
             <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_SecondaryBlock__Var1Test" />
-            <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test" />21
+            <class name = "blog.Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test" />
+            <class name = "videoGallery.BannerType_Block_VideoGallery_Var1Test" />22
         </classes>
     </test>
 </suite>

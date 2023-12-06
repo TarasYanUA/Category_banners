@@ -1,7 +1,10 @@
 package admin;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.Keys;
 import storefront.CategoryPage;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -39,7 +42,6 @@ public class CsCart {
     }
     SelenideElement gearwheel_CategoryBanners = $("#addon_ab__category_banners").$(".nowrap.inline-block-basic");
     SelenideElement section_BannersManagement = $("#addon_ab__category_banners a[href$='ab__category_banners.manage']");
-    SelenideElement section_GeneralSettings = $("#addon_ab__category_banners a[href$='addon=ab__category_banners']");
 
     public BannersManagementPage navigateToPage_BannersManagement(){
         menu_Addons.hover();
@@ -48,20 +50,45 @@ public class CsCart {
         section_BannersManagement.click();
         return new BannersManagementPage();
     }
-    public void navigateToPage_GeneralSettings(){
-        menu_Addons.hover();
-        section_DownloadedAddons.click();
-        gearwheel_CategoryBanners.click();
-        section_GeneralSettings.click();
-    }
 
     SelenideElement gearwheel_AddonsManager = $("#addon_ab__addons_manager").$(".nowrap.inline-block-basic");
     SelenideElement section_ListOfAvailableAddons = $("#addon_ab__addons_manager a[href$='ab__am.addons']");
-    public void navigateToPage_ListOfAvailableAddons(){
+    public SelenideElement gearwheel_VideoGallery = $("tr#addon_ab__video_gallery button.btn.dropdown-toggle");
+    SelenideElement addonsManagerField_Search = $("#ab__am_search");
+    public void installAddonAtAddonsManager(SelenideElement addonMenu, String addonCode, String installButton){
         menu_Addons.hover();
         section_DownloadedAddons.click();
-        gearwheel_AddonsManager.click();
-        section_ListOfAvailableAddons.click();
+        if(!$(addonMenu).exists()) {
+            gearwheel_AddonsManager.click();
+            section_ListOfAvailableAddons.click();
+            addonsManagerField_Search.click();
+            addonsManagerField_Search.sendKeys(addonCode);
+            addonsManagerField_Search.sendKeys(Keys.ENTER);
+            $(installButton).click();
+            Alert alert = Selenide.webdriver().driver().switchTo().alert();
+            alert.accept();
+            Selenide.sleep(11000);
+            $(menu_Addons).shouldBe(Condition.enabled);
+        }
     }
 
+    SelenideElement menu_Design = $("#elm_menu_design");
+    SelenideElement section_Layouts = $("#elm_menu_design_layouts");
+    SelenideElement section_Blocks = $("#elm_menu_design_layouts_manage_blocks");
+
+    public void addBlock_VideoGallery(){
+        menu_Design.hover();
+        section_Layouts.hover();
+        section_Blocks.click();
+        $("#elm_type").selectOptionByValue("ab__vg_videos");
+        $(".advanced-search-field__search").click();
+        if($x("//p[text()='Здесь пока ничего нет']").exists()){
+            $(".cs-icon.icon-plus").click();
+            $(".ui-dialog-title").shouldBe(Condition.exist);
+            $("strong[title='AB: Видео товаров']").click();
+            $("input[name='block_data[description][name]']").shouldBe(Condition.enabled).click();
+            $("input[name='block_data[description][name]']").sendKeys("Видео товаров");
+            $("input[name='dispatch[block_manager.update_block]']").click();
+        }
+    }
 }
