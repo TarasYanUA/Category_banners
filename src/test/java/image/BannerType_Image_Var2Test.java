@@ -71,7 +71,7 @@ public class BannerType_Image_Var2Test extends TestRunner implements Set_ImageFo
                 "There is no second banner of Image type for CompactList!");
 
         //Язык RTL
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         scrollToAndScreenBanner(ScrollToAndScreenBanner.firstBannerName_CompactList, "212 BannerType_Image_Var2Test - first banner, CompactList (RTL)");
         scrollToAndScreenBanner(ScrollToAndScreenBanner.secondBannerName_CompactList, "214 BannerType_Image_Var2Test - second banner, CompactList (RTL)");

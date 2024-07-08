@@ -79,7 +79,7 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test extends Tes
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("704 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - CompactList");
 
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("706 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();

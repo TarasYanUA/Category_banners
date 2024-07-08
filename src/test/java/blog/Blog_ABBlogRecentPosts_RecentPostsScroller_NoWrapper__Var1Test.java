@@ -78,7 +78,7 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test exte
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1104 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test - CompactList");
 
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1106 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();

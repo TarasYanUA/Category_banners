@@ -90,7 +90,7 @@ public class BannerType_Block_VideoGallery__MainBlockSeo__Var2Test extends TestR
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_VideoGallery("2304 BannerType_Block_VideoGallery__MainBlockSeo__Var2Test - CompactList");
 
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_VideoGallery("2306 BannerType_Block_VideoGallery__MainBlockSeo__Var2Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();

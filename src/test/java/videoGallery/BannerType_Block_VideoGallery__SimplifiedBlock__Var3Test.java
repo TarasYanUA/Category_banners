@@ -90,7 +90,7 @@ public class BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test extends Te
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_VideoGallery("2404 BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test - CompactList");
 
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_VideoGallery("2406 BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();
