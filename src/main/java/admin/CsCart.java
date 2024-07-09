@@ -4,21 +4,26 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import storefront.CategoryPage;
 import static com.codeborne.selenide.Selenide.*;
 
-public class CsCart {
+public class CsCart implements CheckMenuToBeActive {
     public CsCart(){super();}
 
-    SelenideElement menu_Products = $x("//li[@class='dropdown nav__header-main-menu-item ']//a[@href='#products']");
-    SelenideElement section_Categories = $("a[href$='dispatch=categories.manage']");
+    SelenideElement cookiesOnStorefront = $(".cm-btn-success");
+    
+
+    //Меню "Товары"
+    SelenideElement menu_Products = $("a[href$='dispatch=products.manage'].main-menu-1__link");
+    SelenideElement section_Categories = $(By.id("products_categories"));
     SelenideElement categoryElectronics = $(".multiple-table-row a[href$='category_id=166']");
     SelenideElement gearwheelOfCategory = $(".dropdown-icon--tools");
     SelenideElement button_Preview = $x("//a[contains(text(), 'Предпросмотр')]");
-    SelenideElement cookiesOnStorefront = $(".cm-btn-success");
-    public CategoryPage navigateToCategoryPage (int tabNumber){
-        menu_Products.hover();
+
+    public CategoryPage navigateToCategoryPage (int tabNumber) {
+        checkMenuToBeActive("dispatch=products.manage", menu_Products);
         section_Categories.click();
         categoryElectronics.click();
         Selenide.sleep(2000);
@@ -29,35 +34,41 @@ public class CsCart {
         return new CategoryPage();
     }
 
-    SelenideElement menu_Addons = $("#elm_menu_addons");
-    SelenideElement section_DownloadedAddons = $("#elm_menu_addons_downloaded_add_ons");
-    SelenideElement gearwheel_UniTheme = $x("//tr[@id='addon_abt__unitheme2']//button[@class='btn dropdown-toggle']");
-    SelenideElement section_ColorSchemeSettings = $("div[class=\"btn-group dropleft open\"] a[href$='abt__ut2.less_settings']");
-    public ColorschemeSettings navigateToPage_ColorSchemeSettings(){
-        menu_Addons.hover();
-        section_DownloadedAddons.click();
-        gearwheel_UniTheme.click();
-        section_ColorSchemeSettings.click();
-        return new ColorschemeSettings();
-    }
+
+    //Меню "Модули -- Скачанные модули"
+    SelenideElement menu_Addons = $x("//span[text()='Модули']");
+    SelenideElement menu_DownloadedAddons = $(By.id("addons_downloaded_add_ons"));
+    SelenideElement themeSectionsOnPage_DownloadedAddons = $x("//tr[@id='addon_abt__unitheme2']//button[@class='btn dropdown-toggle']");
+    SelenideElement section_colorSchemeSettings = $("div[class='btn-group dropleft open'] a[href$='abt__ut2.less_settings']");
     SelenideElement gearwheel_CategoryBanners = $("#addon_ab__category_banners").$(".nowrap.inline-block-basic");
     SelenideElement section_BannersManagement = $("#addon_ab__category_banners a[href$='ab__category_banners.manage']");
+    SelenideElement gearwheel_AddonsManager = $("#addon_ab__addons_manager").$(".nowrap.inline-block-basic");
+    SelenideElement section_ListOfAvailableAddons = $("#addon_ab__addons_manager a[href$='ab__am.addons']");
+    public SelenideElement gearwheel_VideoGallery = $("tr#addon_ab__video_gallery button.btn.dropdown-toggle");
+    SelenideElement addonsManagerField_Search = $("#ab__am_search");
+
+
+    public void navigateTo_DownloadedAddonsPage() {
+        checkMenuToBeActive("dispatch=addons.manage", menu_Addons);
+        menu_DownloadedAddons.click();
+    }
+
+    public ColorschemeSettings navigateToPage_ColorSchemeSettings(){
+        navigateTo_DownloadedAddonsPage();
+        themeSectionsOnPage_DownloadedAddons.click();
+        section_colorSchemeSettings.click();
+        return new ColorschemeSettings();
+    }
 
     public BannersManagementPage navigateToPage_BannersManagement(){
-        menu_Addons.hover();
-        section_DownloadedAddons.click();
+        navigateTo_DownloadedAddonsPage();
         gearwheel_CategoryBanners.click();
         section_BannersManagement.click();
         return new BannersManagementPage();
     }
 
-    SelenideElement gearwheel_AddonsManager = $("#addon_ab__addons_manager").$(".nowrap.inline-block-basic");
-    SelenideElement section_ListOfAvailableAddons = $("#addon_ab__addons_manager a[href$='ab__am.addons']");
-    public SelenideElement gearwheel_VideoGallery = $("tr#addon_ab__video_gallery button.btn.dropdown-toggle");
-    SelenideElement addonsManagerField_Search = $("#ab__am_search");
     public void installAddonAtAddonsManager(SelenideElement addonMenu, String addonCode, String installButton){
-        menu_Addons.hover();
-        section_DownloadedAddons.click();
+        navigateTo_DownloadedAddonsPage();
         if(!$(addonMenu).exists()) {
             gearwheel_AddonsManager.click();
             section_ListOfAvailableAddons.click();
@@ -72,13 +83,17 @@ public class CsCart {
         }
     }
 
-    SelenideElement menu_Design = $("#elm_menu_design");
-    SelenideElement section_Layouts = $("#elm_menu_design_layouts");
+
+    //Меню "Веб-сайт -- Темы -- Макеты"
+    SelenideElement menu_Website = $("a[href$='dispatch=themes.manage'].main-menu-1__link");
+    SelenideElement section_Themes = $("#website_themes");
+    SelenideElement section_Layouts = $(".nav__actions-bar a[href$='block_manager.manage']");
     SelenideElement section_Blocks = $("#elm_menu_design_layouts_manage_blocks");
 
     public void addBlock_VideoGallery(){
-        menu_Design.hover();
-        section_Layouts.hover();
+        checkMenuToBeActive("dispatch=themes.manage", menu_Website);
+        section_Themes.click();
+        section_Layouts.click();
         section_Blocks.click();
         $("#elm_type").selectOptionByValue("ab__vg_videos");
         $(".advanced-search-field__search").click();
