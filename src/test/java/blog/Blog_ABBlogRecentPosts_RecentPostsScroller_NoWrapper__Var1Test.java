@@ -7,10 +7,11 @@ import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.SwitchOffSecondBanner;
 import interfaces_TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
+import utils.Utils;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -38,7 +39,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Заполнение "Блог: прокрутка последних постов"
 */
 
-public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test extends TestRunner implements Set_BlockForBanner, SwitchOffSecondBanner {
+public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test extends TestRunner implements Set_BlockForBanner {
     @Test
     public void setConfiguration_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test(){
         CsCart csCart = new CsCart();
@@ -48,14 +49,14 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test exte
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        switchOffSecondBanner();
+        Utils.switchOffSecondBanner();
         if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
-            bannersManagementPage.clickAndType_field_Name("Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test");
+            bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test");
             set_BlockForBanner_Grid("Блог", "--", "");
             set_BlockForBanner_WithoutOptions("Блог", "--", "");
             set_BlockForBanner_Compact("Блог", "--", "");
-            bannersManagementPage.clickAndType_field_Position("6");
+            bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
             //Работаем с настройками блока "Блог"
@@ -78,7 +79,7 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test exte
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1104 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test - CompactList");
 
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1106 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();

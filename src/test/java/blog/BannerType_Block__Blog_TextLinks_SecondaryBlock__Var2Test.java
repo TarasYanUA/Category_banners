@@ -7,10 +7,10 @@ import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.SwitchOffSecondBanner;
 import interfaces_TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
+import utils.Utils;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -40,7 +40,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Макс. число элементов - 5
 */
 
-public class BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test extends TestRunner implements Set_BlockForBanner, SwitchOffSecondBanner {
+public class BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test extends TestRunner implements Set_BlockForBanner {
     @Test
     public void setConfiguration_BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test(){
         CsCart csCart = new CsCart();
@@ -50,14 +50,14 @@ public class BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test extends T
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        switchOffSecondBanner();
+        Utils.switchOffSecondBanner();
         if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
-            bannersManagementPage.clickAndType_field_Name("BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test");
+            bannersManagementPage.field_Name.setValue("BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test");
             set_BlockForBanner_Grid("Блог", "AB: Второстепенный блок", "fill--color");
             set_BlockForBanner_WithoutOptions("Блог", "AB: Второстепенный блок", "fill--color");
             set_BlockForBanner_Compact("Блог", "AB: Второстепенный блок", "fill--color");
-            bannersManagementPage.clickAndType_field_Position("6");
+            bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
             //Работаем с настройками блока "Блог"
@@ -80,7 +80,7 @@ public class BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test extends T
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("904 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - CompactList");
 
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("906 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();

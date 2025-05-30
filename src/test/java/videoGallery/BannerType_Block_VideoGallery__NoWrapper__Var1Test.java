@@ -7,10 +7,10 @@ import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.SwitchOffSecondBanner;
 import interfaces_TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
+import utils.Utils;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -46,7 +46,7 @@ import static com.codeborne.selenide.Selenide.$x;
     * Количество видео -            10
 */
 
-public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunner implements AddVideo, Set_BlockForBanner, SwitchOffSecondBanner {
+public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunner implements AddVideo, Set_BlockForBanner {
     @Test(priority = 1)
     public void setConfiguration_BannerType_Block_VideoGallery__NoWrapper__Var1Test(){
         CsCart csCart = new CsCart();
@@ -60,14 +60,14 @@ public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunn
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        switchOffSecondBanner();
+        Utils.switchOffSecondBanner();
         if(!$x("//a[text()='BannerType_Block_VideoGallery__NoWrapper__Var1Test']").exists()) {
             $("a[href$='category_banner_id=3']").click();
-            bannersManagementPage.clickAndType_field_Name("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
+            bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
             set_BlockForBanner_Grid("Видео товаров", "--", "");
             set_BlockForBanner_WithoutOptions("Видео товаров", "--", "");
             set_BlockForBanner_Compact("Видео товаров", "--", "");
-            bannersManagementPage.clickAndType_field_Position("6");
+            bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
             //Работаем с настройками блока "Видео товаров"
@@ -90,7 +90,7 @@ public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunn
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_VideoGallery("2204 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList");
 
-        shiftToRTLLanguage();
+        selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_VideoGallery("2206 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.hover().click();

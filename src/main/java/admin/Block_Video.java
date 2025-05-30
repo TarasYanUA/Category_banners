@@ -1,11 +1,14 @@
 package admin;
 
 import com.codeborne.selenide.SelenideElement;
+import utils.Utils;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class Block_Video {
-    public Block_Video(){super();}
+    public Block_Video() {
+        super();
+    }
 
     SelenideElement button_Settings = $("a[id^='sw_case_settings_']");
     SelenideElement setting_NumberOfColumns = $("select[id$='ab__vg_videos_properties_number_of_columns']");
@@ -24,22 +27,14 @@ public class Block_Video {
     * Отобразить описание видео -   да
     * Количество видео -            10
      */
-    public void setSettingsForVideoBlock_Var1(){
+    public void setSettingsForVideoBlock_Var1() {
         button_Settings.click();
         setting_NumberOfColumns.selectOptionByValue("4");
-        if(!setting_DisplayLinkToProduct.isSelected()) {
-            setting_DisplayLinkToProduct.click();
-        }
-        if(!setting_DisplayVideoTitle.isSelected()) {
-            setting_DisplayVideoTitle.click();
-        }
-        if(!setting_DisplayVideoDescription.isSelected()) {
-            setting_DisplayVideoDescription.click();
-        }
+        Utils.setCheckbox(setting_DisplayLinkToProduct, true);
+        Utils.setCheckbox(setting_DisplayVideoTitle, true);
+        Utils.setCheckbox(setting_DisplayVideoDescription, true);
         tab_BlockSettings.click();
-        setting_NumberOfVideos.click();
-        setting_NumberOfVideos.clear();
-        setting_NumberOfVideos.sendKeys("10");
+        setting_NumberOfVideos.setValue("10");
         button_Save.click();
     }
 
@@ -51,22 +46,14 @@ public class Block_Video {
 * Отобразить описание видео -   нет
 * Количество видео -            3
  */
-    public void setSettingsForVideoBlock_Var2(){
+    public void setSettingsForVideoBlock_Var2() {
         button_Settings.click();
         setting_NumberOfColumns.selectOptionByValue("3");
-        if(setting_DisplayLinkToProduct.isSelected()) {
-            setting_DisplayLinkToProduct.click();
-        }
-        if(setting_DisplayVideoTitle.isSelected()) {
-            setting_DisplayVideoTitle.click();
-        }
-        if(setting_DisplayVideoDescription.isSelected()) {
-            setting_DisplayVideoDescription.click();
-        }
+        Utils.setCheckbox(setting_DisplayLinkToProduct, false);
+        Utils.setCheckbox(setting_DisplayVideoTitle, false);
+        Utils.setCheckbox(setting_DisplayVideoDescription, false);
         tab_BlockSettings.click();
-        setting_NumberOfVideos.click();
-        setting_NumberOfVideos.clear();
-        setting_NumberOfVideos.sendKeys("3");
+        setting_NumberOfVideos.setValue("3");
         button_Save.click();
     }
 
@@ -78,22 +65,14 @@ public class Block_Video {
 * Отобразить описание видео -   нет
 * Количество видео -            5
 */
-    public void setSettingsForVideoBlock_Var3(){
+    public void setSettingsForVideoBlock_Var3() {
         button_Settings.click();
         setting_NumberOfColumns.selectOptionByValue("3");
-        if(setting_DisplayLinkToProduct.isSelected()) {
-            setting_DisplayLinkToProduct.click();
-        }
-        if(setting_DisplayVideoTitle.isSelected()) {
-            setting_DisplayVideoTitle.click();
-        }
-        if(setting_DisplayVideoDescription.isSelected()) {
-            setting_DisplayVideoDescription.click();
-        }
+        Utils.setCheckbox(setting_DisplayLinkToProduct, true);
+        Utils.setCheckbox(setting_DisplayVideoTitle, false);
+        Utils.setCheckbox(setting_DisplayVideoDescription, false);
         tab_BlockSettings.click();
-        setting_NumberOfVideos.click();
-        setting_NumberOfVideos.clear();
-        setting_NumberOfVideos.sendKeys("5");
+        setting_NumberOfVideos.setValue("5");
         button_Save.click();
     }
 }
