@@ -18,7 +18,7 @@ public interface Set_BlockForBanner {
             bannersManagementPage.setting_Full_width.click();
         }
         bannersManagementPage.setting_Wrapper_Grid.selectOption(wrapperText);
-        bannersManagementPage.clickAndTypeSetting_CssClass_Grid(cssClass);
+        bannersManagementPage.setting_CssClass_Grid.setValue(cssClass);
     }
 
     default void set_BlockForBanner_WithoutOptions(String blockName, String wrapperText, String cssClass){
@@ -28,7 +28,7 @@ public interface Set_BlockForBanner {
         $("#content_user_existing_blocks_products_without_options strong[title='" + blockName + "']").click();
         Selenide.sleep(1000);
         bannersManagementPage.setting_Wrapper_WithoutOptions.selectOption(wrapperText);
-        bannersManagementPage.clickAndTypeSetting_CssClass_WithoutOptions(cssClass);
+        bannersManagementPage.setting_CssClass_WithoutOptions.setValue(cssClass);
     }
 
     default void set_BlockForBanner_Compact(String blockName, String wrapperText, String cssClass){
@@ -38,6 +38,6 @@ public interface Set_BlockForBanner {
         $("#content_user_existing_blocks_short_list strong[title='" + blockName + "']").click();
         Selenide.sleep(1000);
         bannersManagementPage.setting_Wrapper_Compact.selectOption(wrapperText);
-        bannersManagementPage.clickAndTypeSetting_CssClass_Compact(cssClass);
+        bannersManagementPage.setting_CssClass_Compact.setValue(cssClass);
     }
 }

@@ -7,10 +7,10 @@ import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.SwitchOffSecondBanner;
 import interfaces_TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
+import utils.Utils;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -46,7 +46,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Количество видео -            3
 */
 
-public class BannerType_Block_VideoGallery__MainBlockSeo__Var2Test extends TestRunner implements AddVideo, Set_BlockForBanner, SwitchOffSecondBanner {
+public class BannerType_Block_VideoGallery__MainBlockSeo__Var2Test extends TestRunner implements AddVideo, Set_BlockForBanner {
     @Test(priority = 1)
     public void setConfiguration_BannerType_Block_VideoGallery__MainBlockSeo__Var2Test(){
         CsCart csCart = new CsCart();
@@ -60,14 +60,14 @@ public class BannerType_Block_VideoGallery__MainBlockSeo__Var2Test extends TestR
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        switchOffSecondBanner();
+        Utils.switchOffSecondBanner();
         if(!$x("//a[text()='BannerType_Block_VideoGallery__MainBlockSeo__Var2Test']").exists()) {
             $("a[href$='category_banner_id=3']").click();
-            bannersManagementPage.clickAndType_field_Name("BannerType_Block_VideoGallery__MainBlockSeo__Var2Test");
+            bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__MainBlockSeo__Var2Test");
             set_BlockForBanner_Grid("Видео товаров", "AB: Основной блок (SEO)", "fill--color");
             set_BlockForBanner_WithoutOptions("Видео товаров", "AB: Основной блок (SEO)", "fill--color");
             set_BlockForBanner_Compact("Видео товаров", "AB: Основной блок (SEO)", "fill--color");
-            bannersManagementPage.clickAndType_field_Position("6");
+            bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
             //Работаем с настройками блока "Видео товаров"

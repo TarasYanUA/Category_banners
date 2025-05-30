@@ -5,15 +5,17 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import storefront.CategoryPage;
+import utils.Utils;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class CsCart implements CheckMenuToBeActive {
-    public CsCart(){super();}
+    public CsCart() {
+        super();
+    }
 
     SelenideElement cookiesOnStorefront = $(".cm-btn-success");
-    
 
     //Меню "Товары"
     SelenideElement menu_Products = $("a[href$='dispatch=products.manage'].main-menu-1__link");
@@ -22,7 +24,8 @@ public class CsCart implements CheckMenuToBeActive {
     SelenideElement gearwheelOfCategory = $(".dropdown-icon--tools");
     SelenideElement button_Preview = $x("//a[contains(text(), 'Предпросмотр')]");
 
-    public CategoryPage navigateToCategoryPage (int tabNumber) {
+
+    public CategoryPage navigateToCategoryPage(int tabNumber) {
         checkMenuToBeActive("dispatch=products.manage", menu_Products);
         section_Categories.click();
         categoryElectronics.click();
@@ -53,32 +56,31 @@ public class CsCart implements CheckMenuToBeActive {
         menu_DownloadedAddons.click();
     }
 
-    public ColorschemeSettings navigateToPage_ColorSchemeSettings(){
+    public ColorschemeSettings navigateToPage_ColorSchemeSettings() {
         navigateTo_DownloadedAddonsPage();
         themeSectionsOnPage_DownloadedAddons.click();
         section_colorSchemeSettings.click();
         return new ColorschemeSettings();
     }
 
-    public BannersManagementPage navigateToPage_BannersManagement(){
+    public BannersManagementPage navigateToPage_BannersManagement() {
         navigateTo_DownloadedAddonsPage();
         gearwheel_CategoryBanners.click();
         section_BannersManagement.click();
         return new BannersManagementPage();
     }
 
-    public void installAddonAtAddonsManager(SelenideElement addonMenu, String addonCode, String installButton){
+    public void installAddonAtAddonsManager(SelenideElement addonMenu, String addonCode, String installButton) {
         navigateTo_DownloadedAddonsPage();
-        if(!$(addonMenu).exists()) {
+        if (!$(addonMenu).exists()) {
             gearwheel_AddonsManager.click();
             section_ListOfAvailableAddons.click();
             addonsManagerField_Search.click();
-            addonsManagerField_Search.sendKeys(addonCode);
-            addonsManagerField_Search.sendKeys(Keys.ENTER);
+            addonsManagerField_Search.setValue(addonCode).pressEnter();
             $(installButton).click();
             Alert alert = Selenide.webdriver().driver().switchTo().alert();
             alert.accept();
-            Selenide.sleep(11000);
+            Utils.waitForSpinnerDisappear();
             $(menu_Addons).shouldBe(Condition.enabled);
         }
     }
@@ -90,14 +92,14 @@ public class CsCart implements CheckMenuToBeActive {
     SelenideElement section_Layouts = $(".nav__actions-bar a[href$='block_manager.manage']");
     SelenideElement section_Blocks = $("#elm_menu_design_layouts_manage_blocks");
 
-    public void addBlock_VideoGallery(){
+    public void addBlock_VideoGallery() {
         checkMenuToBeActive("dispatch=themes.manage", menu_Website);
         section_Themes.click();
         section_Layouts.click();
         section_Blocks.click();
         $("#elm_type").selectOptionByValue("ab__vg_videos");
         $(".advanced-search-field__search").click();
-        if($x("//p[text()='Здесь пока ничего нет']").exists()){
+        if ($x("//p[text()='Здесь пока ничего нет']").exists()) {
             $(".cs-icon.icon-plus").click();
             $(".ui-dialog-title").shouldBe(Condition.exist);
             $("strong[title='AB: Видео товаров']").click();

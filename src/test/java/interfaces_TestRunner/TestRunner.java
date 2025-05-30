@@ -17,13 +17,12 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TestRunner {
-    public static final String BASIC_URL = "https://trs.test.abt.team/4172ultru_category_banners/admin.php?dispatch=addons.manage";
+    public static final String BASIC_URL = "https://trs.test.abt.team/4183ultru/admin.php?dispatch=addons.manage";
 
     @BeforeMethod
     public void openBrowser() {
         Configuration.browser = "chrome";
         open(BASIC_URL);
-        Configuration.holdBrowserOpen = false; //не закрываем браузер пока ведём разработку
         Configuration.screenshots = true; //делаем скриншоты при падении
         WebDriverRunner.getWebDriver().manage().window().maximize(); //окно браузера на весь экран
         $(".btn.btn-primary").click();
