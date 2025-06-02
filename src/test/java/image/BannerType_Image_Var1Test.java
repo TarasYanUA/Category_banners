@@ -10,7 +10,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import storefront.AssertsPage;
 import storefront.CategoryPage;
-import static com.codeborne.selenide.Selenide.*;
+
+import static com.codeborne.selenide.Selenide.$;
 
 /*
 Настройки цветосхемы:
@@ -50,44 +51,49 @@ public class BannerType_Image_Var1Test extends TestRunner {
         AssertsPage assertsPage = new AssertsPage();
 
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        Utils.scrollToAndScreenBanner(Utils.firstBannerName_Grid, "100 BannerType_Image_Var1Test - first banner, Grid");
-        softAssert.assertTrue($(".category-banner img").getAttribute("src").contains(Utils.firstBannerName_Grid),
+        assertsPage.assertElementExists(assertsPage.firstBannerForGrid);
+        softAssert.assertTrue($(assertsPage.firstBannerForGrid).exists(),
                 "There is no first banner of Image type for Grid!");
-        Utils.scrollToAndScreenBanner(Utils.secondBannerName_Grid, "102 BannerType_Image_Var1Test - second banner, Grid");
-        softAssert.assertTrue(assertsPage.secondBannerForGrid.getAttribute("src").contains(Utils.secondBannerName_Grid),
+        categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForGrid), "100 BannerType_Image_Var1Test - first banner, Grid");
+
+        softAssert.assertTrue($(assertsPage.secondBannerForGrid).exists(),
                 "There is no second banner of Image type for Grid!");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForGrid), "102 BannerType_Image_Var1Test - second banner, Grid");
 
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        Utils.scrollToAndScreenBanner(Utils.firstBannerName_WithoutOptions, "104 BannerType_Image_Var1Test - first banner, ListWithoutOptions");
-        softAssert.assertTrue($(".category-banner img").getAttribute("src").contains(Utils.firstBannerName_WithoutOptions),
+        softAssert.assertTrue($(assertsPage.firstBannerForListWithoutOptions).exists(),
                 "There is no first banner of Image type for ListWithoutOptions!");
-        Utils.scrollToAndScreenBanner(Utils.secondBannerName_WithoutOptions, "106 BannerType_Image_Var1Test - second banner, ListWithoutOptions");
-        softAssert.assertTrue(assertsPage.secondBannerForListWithoutOptions.getAttribute("src").contains(Utils.secondBannerName_WithoutOptions),
+        categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForListWithoutOptions), "104 BannerType_Image_Var1Test - first banner, ListWithoutOptions");
+
+        softAssert.assertTrue($(assertsPage.secondBannerForListWithoutOptions).exists(),
                 "There is no second banner of Image type for ListWithoutOptions!");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForListWithoutOptions), "106 BannerType_Image_Var1Test - second banner, ListWithoutOptions");
 
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        Utils.scrollToAndScreenBanner(Utils.firstBannerName_CompactList, "108 BannerType_Image_Var1Test - first banner, CompactList");
-        softAssert.assertTrue($(".category-banner img").getAttribute("src").contains(Utils.firstBannerName_CompactList),
+        softAssert.assertTrue($(assertsPage.firstBannerForCompactList).exists(),
                 "There is no first banner of Image type for CompactList!");
-        Utils.scrollToAndScreenBanner(Utils.secondBannerName_CompactList, "110 BannerType_Image_Var1Test - second banner, CompactList");
-        softAssert.assertTrue(assertsPage.secondBannerForCompactList.getAttribute("src").contains(Utils.secondBannerName_CompactList),
+        categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForCompactList), "108 BannerType_Image_Var1Test - first banner, CompactList");
+
+        softAssert.assertTrue($(assertsPage.secondBannerForCompactList).exists(),
                 "There is no second banner of Image type for CompactList!");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForCompactList), "110 BannerType_Image_Var1Test - second banner, CompactList");
 
         //Язык RTL
         selectLanguage_RTL();
         Selenide.sleep(2000);
-        Utils.scrollToAndScreenBanner(Utils.firstBannerName_CompactList, "112 BannerType_Image_Var1Test - first banner, CompactList (RTL)");
-        Utils.scrollToAndScreenBanner(Utils.secondBannerName_CompactList, "114 BannerType_Image_Var1Test - second banner, CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForCompactList), "112 BannerType_Image_Var1Test - first banner, CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForCompactList), "114 BannerType_Image_Var1Test - second banner, CompactList (RTL)");
 
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        Utils.scrollToAndScreenBanner(Utils.firstBannerName_WithoutOptions, "116 BannerType_Image_Var1Test - first banner, ListWithoutOptions (RTL)");
-        Utils.scrollToAndScreenBanner(Utils.secondBannerName_WithoutOptions, "118 BannerType_Image_Var1Test - second banner, ListWithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForListWithoutOptions), "116 BannerType_Image_Var1Test - first banner, ListWithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForListWithoutOptions), "118 BannerType_Image_Var1Test - second banner, ListWithoutOptions (RTL)");
 
-        Utils.scrollToAndScreenBanner(Utils.firstBannerName_Grid, "120 BannerType_Image_Var1Test - first banner, Grid (RTL)");
-        Utils.scrollToAndScreenBanner(Utils.secondBannerName_Grid, "122 BannerType_Image_Var1Test - second banner, Grid (RTL)");
-        softAssert.assertAll(); //Есть ошибка видимости баннеров https://abteam.planfix.com/task/43074
+        categoryPage.productListView_Grid.scrollIntoCenter().click();
+        Utils.waitForSpinnerDisappear();
+        categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForGrid), "120 BannerType_Image_Var1Test - first banner, Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForGrid), "122 BannerType_Image_Var1Test - second banner, Grid (RTL)");
     }
 }

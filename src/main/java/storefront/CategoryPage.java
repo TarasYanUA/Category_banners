@@ -16,6 +16,19 @@ public class CategoryPage {
     public SelenideElement productListView_CompactList = $(".ut2-icon-short-list");
 
 
+    //Из-за ошибки https://abteam.planfix.com/task/43074 пришлось делать условия на присутствие баннеров на странице категории и обновлять страницу, если баннер отсутствует
+    public void scrollToAndScreenBanner(SelenideElement banner, String screenshotName) {
+        Utils.waitForSpinnerDisappear();
+
+        if(!banner.exists()){
+            Selenide.refresh();
+            Selenide.sleep(2000);
+        }
+
+        banner.scrollIntoCenter();
+        screenshot(screenshotName);
+    }
+
     public void scrollToAndScreenBanner_TextLinks(String screenshotName) {
         Utils.waitForSpinnerDisappear();
         $(".ty-blog-text-links").scrollIntoCenter();

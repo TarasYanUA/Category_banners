@@ -17,7 +17,6 @@ public class BannersManagementPage {
     public SelenideElement field_Name = $("#elm_category_banner");
     public SelenideElement setting_BlockSettings = $("#ajax_update_block_products_multicolumns .cs-icon.icon-cog");
 
-
     //Настройки для Вид списка "Сетка"
     public SelenideElement typeImage_Grid = $("input#image_products_multicolumns[value='I']");
     public SelenideElement typeBlock_Grid = $("#block_products_multicolumns");
@@ -53,40 +52,46 @@ public class BannersManagementPage {
 
     public void selectPictureForBanner(String picName) {
         Selenide.sleep(1000);
-        if ($x("//tbody//span[contains(text(), '" + picName + "')]").exists()) {
-            $x("//tbody//span[contains(text(), '" + picName + "')]").doubleClick();
+        SelenideElement banner = $x("//tbody//span[contains(text(), '" + picName + "')]");
+
+        if (banner.exists()) {
+            banner.doubleClick();
         } else {
             folder_PublicFiles.click();
             folder_CategoryBanners.click();
             folder_8.click();
-            if ($("div[title='В виде списка']").exists()) {
+            if ($("div[title='В виде списка']").exists())
                 $("div[title='В виде списка']").click();
-            }
-            $x("//tbody//span[contains(text(), '" + picName + "')]").click();
-            $x("//tbody//span[contains(text(), '" + picName + "')]").doubleClick();
+            banner.click();
+            banner.doubleClick();
         }
     }
 
     public void set_ImageForBanner() {
-        if (!status_Disabled.isEmpty()) {   //если присутствует статус "Выкл.", то включаем баннер
+        String bannerName_Grid = "category_banners_main_image-1";
+        String bannerName_WithoutOptions = "category_banners_list_image-1";
+        String bannerName_CompactList = "category_banners_short_list_pair-1";
+
+        if (!status_Disabled.isEmpty()) {   //если присутствует статус "Выкл.", то включаем баннеры
             for (int i = 0; i <= status_Disabled.size(); i++) {
                 status_Disabled.get(i).shouldBe(Condition.enabled).click();
                 $x("//div[contains(@class, 'dropleft open')]//a[@title='Вкл.']").click();
             }
         }
+
         if (!$x("//a[text()='Autobanner of Image type']").exists()) {
             Utils.shiftLanguage("ru");
             $("a[href$='category_banner_id=1']").click();
             field_Name.setValue("Autobanner of Image type");
             typeImage_Grid.click();
             button_Server_Grid.click();
-            selectPictureForBanner(Utils.firstBannerName_Grid);
+            selectPictureForBanner(bannerName_Grid);
             typeImage_WithoutOptions.click();
             button_Server_WithoutOptions.click();
-            selectPictureForBanner(Utils.firstBannerName_WithoutOptions);
+            selectPictureForBanner(bannerName_WithoutOptions);
             typeImage_Compact.click();
             button_Server_Compact.click();
-            selectPictureForBanner(Utils.firstBannerName_CompactList);
+            selectPictureForBanner(bannerName_CompactList);
             field_Position.setValue("2");
             button_Save.click();
 
@@ -94,13 +99,13 @@ public class BannersManagementPage {
             field_Name.setValue("Autobanner of Image type");
             typeImage_Grid.click();
             button_Server_Grid.click();
-            selectPictureForBanner(Utils.firstBannerName_Grid);
+            selectPictureForBanner(bannerName_Grid);
             typeImage_WithoutOptions.click();
             button_Server_WithoutOptions.click();
-            selectPictureForBanner(Utils.firstBannerName_WithoutOptions);
+            selectPictureForBanner(bannerName_WithoutOptions);
             typeImage_Compact.click();
             button_Server_Compact.click();
-            selectPictureForBanner(Utils.firstBannerName_CompactList);
+            selectPictureForBanner(bannerName_CompactList);
             button_Save.click();
         }
     }
