@@ -48,26 +48,26 @@ public class BannerType_Image_Var1Test extends TestRunner {
         AssertsPage assertsPage = new AssertsPage();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
 
-        assertsPage.assertElementExists(assertsPage.firstBannerForGrid);
+        assertsPage.assertBannerExists(assertsPage.firstBannerForGrid);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForGrid), "100 BannerType_Image_Var1Test - first banner, Grid");
 
-        assertsPage.assertElementExists(assertsPage.secondBannerForGrid);
+        assertsPage.assertBannerExists(assertsPage.secondBannerForGrid);
         categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForGrid), "102 BannerType_Image_Var1Test - second banner, Grid");
 
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        assertsPage.assertElementExists(assertsPage.firstBannerForListWithoutOptions);
+        assertsPage.assertBannerExists(assertsPage.firstBannerForListWithoutOptions);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForListWithoutOptions), "104 BannerType_Image_Var1Test - first banner, ListWithoutOptions");
 
-        assertsPage.assertElementExists(assertsPage.secondBannerForListWithoutOptions);
+        assertsPage.assertBannerExists(assertsPage.secondBannerForListWithoutOptions);
         categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForListWithoutOptions), "106 BannerType_Image_Var1Test - second banner, ListWithoutOptions");
 
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        assertsPage.assertElementExists(assertsPage.firstBannerForCompactList);
+        assertsPage.assertBannerExists(assertsPage.firstBannerForCompactList);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForCompactList), "108 BannerType_Image_Var1Test - first banner, CompactList");
 
-        assertsPage.assertElementExists(assertsPage.secondBannerForCompactList);
+        assertsPage.assertBannerExists(assertsPage.secondBannerForCompactList);
         categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForCompactList), "110 BannerType_Image_Var1Test - second banner, CompactList");
 
         //Язык RTL

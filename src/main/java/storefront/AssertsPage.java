@@ -21,7 +21,7 @@ public class AssertsPage {
     public String secondBannerForCompactList = "img[src*='category_banners_short_list_pair-2']";
 
 
-    public void assertElementExists(String selector) {
+    public void assertBannerExists(String selector) {
         Map<String, String> messages = Map.of(
                 firstBannerForGrid, "There is no first banner of Image type for Grid!",
                 firstBannerForListWithoutOptions,"There is no first banner of Image type for ListWithoutOptions!",
