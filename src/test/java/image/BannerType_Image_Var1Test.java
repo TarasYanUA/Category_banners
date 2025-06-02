@@ -3,7 +3,6 @@ package image;
 import admin.BannersManagementPage;
 import admin.ColorschemeSettings;
 import admin.CsCart;
-import com.codeborne.selenide.Selenide;
 import interfaces_TestRunner.TestRunner;
 import utils.Utils;
 import org.testng.annotations.Test;
@@ -73,7 +72,6 @@ public class BannerType_Image_Var1Test extends TestRunner {
 
         //Язык RTL
         selectLanguage_RTL();
-        Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForCompactList), "112 BannerType_Image_Var1Test - first banner, CompactList (RTL)");
         categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForCompactList), "114 BannerType_Image_Var1Test - second banner, CompactList (RTL)");
 
