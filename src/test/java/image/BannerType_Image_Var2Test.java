@@ -6,7 +6,6 @@ import admin.CsCart;
 import com.codeborne.selenide.Selenide;
 import interfaces_TestRunner.TestRunner;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import storefront.AssertsPage;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -47,37 +46,30 @@ public class BannerType_Image_Var2Test extends TestRunner {
     @Test (priority = 2, dependsOnMethods = "setConfiguration_BannerType_Image_Var2Test")
     public void check_BannerType_Image_Var2Test(){
         CsCart csCart = new CsCart();
-        SoftAssert softAssert = new SoftAssert();
         AssertsPage assertsPage = new AssertsPage();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
 
-        softAssert.assertTrue($(assertsPage.firstBannerForGrid).exists(),
-                "There is no first banner of Image type for Grid!");
+        assertsPage.assertElementExists(assertsPage.firstBannerForGrid);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForGrid), "200 BannerType_Image_Var2Test - first banner, Grid");
 
-        softAssert.assertTrue($(assertsPage.secondBannerForGrid).exists(),
-                "There is no second banner of Image type for Grid!");
+        assertsPage.assertElementExists(assertsPage.secondBannerForGrid);
         categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForGrid), "202 BannerType_Image_Var2Test - second banner, Grid");
 
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        softAssert.assertTrue($(assertsPage.firstBannerForListWithoutOptions).exists(),
-                "There is no first banner of Image type for ListWithoutOptions!");
+        assertsPage.assertElementExists(assertsPage.firstBannerForListWithoutOptions);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForListWithoutOptions), "204 BannerType_Image_Var2Test - first banner, ListWithoutOptions");
 
-        softAssert.assertTrue($(assertsPage.secondBannerForListWithoutOptions).exists(),
-                "There is no second banner of Image type for ListWithoutOptions!");
+        assertsPage.assertElementExists(assertsPage.secondBannerForListWithoutOptions);
         categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForListWithoutOptions), "206 BannerType_Image_Var2Test - second banner, ListWithoutOptions");
 
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        softAssert.assertTrue($(assertsPage.firstBannerForCompactList).exists(),
-                "There is no first banner of Image type for CompactList!");
+        assertsPage.assertElementExists(assertsPage.firstBannerForCompactList);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForCompactList), "208 BannerType_Image_Var2Test - first banner, CompactList");
 
         categoryPage.scrollToAndScreenBanner($(assertsPage.secondBannerForCompactList), "210 BannerType_Image_Var2Test - second banner, CompactList");
-        softAssert.assertTrue($(assertsPage.secondBannerForCompactList).exists(),
-                "There is no second banner of Image type for CompactList!");
+        assertsPage.assertElementExists(assertsPage.secondBannerForCompactList);
 
         //Язык RTL
         selectLanguage_RTL();
