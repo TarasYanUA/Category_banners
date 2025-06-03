@@ -6,8 +6,7 @@ import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.TestRunner;
+import TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -40,7 +39,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Макс. число элементов - 5
 */
 
-public class BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test extends TestRunner implements Set_BlockForBanner {
+public class BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test extends TestRunner {
     @Test
     public void setConfiguration_BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test(){
         CsCart csCart = new CsCart();
@@ -55,9 +54,9 @@ public class BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test extends TestRu
         if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.field_Name.setValue("BannerType_Block__Blog_TextLinks_NoWrapper__Var2Test");
-            set_BlockForBanner_Grid("Блог", "--", "fill--color");
-            set_BlockForBanner_WithoutOptions("Блог", "--", "fill--color");
-            set_BlockForBanner_Compact("Блог", "--", "fill--color");
+            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--color", "grid");
+            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--color", "without options");
+            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--color", "compact");
             bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 

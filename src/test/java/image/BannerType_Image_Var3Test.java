@@ -3,7 +3,7 @@ package image;
 import admin.BannersManagementPage;
 import admin.ColorschemeSettings;
 import admin.CsCart;
-import interfaces_TestRunner.TestRunner;
+import TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.AssertsPage;
 import storefront.CategoryPage;

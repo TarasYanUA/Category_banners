@@ -6,8 +6,7 @@ import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.TestRunner;
+import TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -39,7 +38,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Заполнение "Блог: прокрутка последних постов"
 */
 
-public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test extends TestRunner implements Set_BlockForBanner {
+public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test extends TestRunner {
     @Test
     public void setConfiguration_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test(){
         CsCart csCart = new CsCart();
@@ -53,9 +52,9 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test exte
         if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var1Test");
-            set_BlockForBanner_Grid("Блог", "--", "");
-            set_BlockForBanner_WithoutOptions("Блог", "--", "");
-            set_BlockForBanner_Compact("Блог", "--", "");
+            bannersManagementPage.set_BlockForBanner("Блог", "--", "", "grid");
+            bannersManagementPage.set_BlockForBanner("Блог", "--", "", "without options");
+            bannersManagementPage.set_BlockForBanner("Блог", "--", "", "compact");
             bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 

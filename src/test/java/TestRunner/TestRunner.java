@@ -1,4 +1,4 @@
-package interfaces_TestRunner;/*
+package TestRunner;/*
 Модуль "Баннеры для категорий" v3.0.0 + тема Юни2(UltRu) v4.18.1d. Можно установить весь пакет темы Юни2.
 Работает в браузерах Chrome и Edge!
 

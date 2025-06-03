@@ -5,9 +5,7 @@ import admin.Block_Blog;
 import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.TestRunner;
+import TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -40,7 +38,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Макс. число элементов - 5
 */
 
-public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends TestRunner implements Set_BlockForBanner {
+public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends TestRunner {
     @Test
     public void setConfiguration_BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test(){
         CsCart csCart = new CsCart();
@@ -54,9 +52,12 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends Tes
         if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.field_Name.setValue("BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test");
-            set_BlockForBanner_Grid("Блог", "AB: Основной блок (SEO)", "fill--color");
-            set_BlockForBanner_WithoutOptions("Блог", "AB: Основной блок (SEO)", "fill--color");
-            set_BlockForBanner_Compact("Блог", "AB: Основной блок (SEO)", "fill--color");
+            bannersManagementPage.set_BlockForBanner("Будьте в курсе последних новостей (блог)",
+                    "AB: Основной блок (SEO)", "fill--color", "grid");
+            bannersManagementPage.set_BlockForBanner("Будьте в курсе последних новостей (блог)",
+                    "AB: Основной блок (SEO)", "fill--color", "without options");
+            bannersManagementPage.set_BlockForBanner("Будьте в курсе последних новостей (блог)",
+                    "AB: Основной блок (SEO)", "fill--color", "compact");
             bannersManagementPage.field_Position.sendKeys("6");
             bannersManagementPage.button_Save.click();
 
@@ -73,21 +74,20 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends Tes
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
         categoryPage.scrollToAndScreenBanner_TextLinks("600 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - Grid");
-        categoryPage.productListView_ListWithoutOptions.hover().click();
-        Selenide.sleep(2000);
+        categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner_TextLinks("602 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - WithoutOptions");
-        categoryPage.productListView_CompactList.hover().click();
-        Selenide.sleep(2000);
+        categoryPage.productListView_CompactList.scrollIntoCenter().click();
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner_TextLinks("604 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - CompactList");
 
         selectLanguage_RTL();
-        Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("606 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - CompactList (RTL)");
-        categoryPage.productListView_ListWithoutOptions.hover().click();
-        Selenide.sleep(2000);
+        categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner_TextLinks("608 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - WithoutOptions (RTL)");
-        categoryPage.productListView_Grid.hover().click();
-        Selenide.sleep(2000);
+        categoryPage.productListView_Grid.scrollIntoCenter().click();
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner_TextLinks("610 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - Grid (RTL)");
     }
 }

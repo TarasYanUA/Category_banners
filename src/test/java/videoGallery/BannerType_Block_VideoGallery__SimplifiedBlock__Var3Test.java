@@ -6,8 +6,7 @@ import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import interfaces_TestRunner.Set_BlockForBanner;
-import interfaces_TestRunner.TestRunner;
+import TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -46,7 +45,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Количество видео -            5
 */
 
-public class BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test extends TestRunner implements AddVideo, Set_BlockForBanner {
+public class BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test extends TestRunner implements AddVideo {
     @Test(priority = 1)
     public void setConfiguration_BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test(){
         CsCart csCart = new CsCart();
@@ -64,9 +63,12 @@ public class BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test extends Te
         if(!$x("//a[text()='BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test']").exists()) {
             $("a[href$='category_banner_id=3']").click();
             bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test");
-            set_BlockForBanner_Grid("Видео товаров", "AB: Упрощенный блок", "fill--gray");
-            set_BlockForBanner_WithoutOptions("Видео товаров", "AB: Упрощенный блок", "fill--gray");
-            set_BlockForBanner_Compact("Видео товаров", "AB: Упрощенный блок", "fill--gray");
+            bannersManagementPage.set_BlockForBanner("Видео товаров",
+                    "AB: Упрощенный блок", "fill--gray", "grid");
+            bannersManagementPage.set_BlockForBanner("Видео товаров",
+                    "AB: Упрощенный блок", "fill--gray", "without options");
+            bannersManagementPage.set_BlockForBanner("Видео товаров",
+                    "AB: Упрощенный блок", "fill--gray", "compact");
             bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 

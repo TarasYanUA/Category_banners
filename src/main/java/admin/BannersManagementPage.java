@@ -15,7 +15,7 @@ public class BannersManagementPage {
 
     public ElementsCollection status_Disabled = $$x("//a[@id][contains(text(), 'Выкл.')]");
     public SelenideElement field_Name = $("#elm_category_banner");
-    public SelenideElement setting_BlockSettings = $("#ajax_update_block_products_multicolumns .cs-icon.icon-cog");
+    public SelenideElement setting_BlockSettings = $(".cm-dialog-opener.action-properties.bm-action-properties");
 
     //Настройки для Вид списка "Сетка"
     public SelenideElement typeImage_Grid = $("input#image_products_multicolumns[value='I']");
@@ -107,6 +107,36 @@ public class BannersManagementPage {
             button_Server_Compact.click();
             selectPictureForBanner(bannerName_CompactList);
             button_Save.click();
+        }
+    }
+
+    public void set_BlockForBanner(String blockName, String wrapper, String cssClass, String template) {
+        typeBlock_Grid.click();
+        button_SelectBlock_Grid.click();
+
+        $(".ui-dialog-title").shouldBe(Condition.enabled);
+        $("#content_user_existing_blocks_products_multicolumns strong[title='" + blockName + "']").click();
+        Selenide.sleep(1500);
+
+        if (!setting_Full_width.isSelected()) {
+            setting_Full_width.click();
+        }
+
+        switch (template.toLowerCase()) {
+            case "grid":
+                setting_Wrapper_Grid.selectOption(wrapper);
+                setting_CssClass_Grid.setValue(cssClass);
+                break;
+            case "without options":
+                setting_Wrapper_WithoutOptions.selectOption(wrapper);
+                setting_CssClass_WithoutOptions.setValue(cssClass);
+                break;
+            case "compact":
+                setting_Wrapper_Compact.selectOption(wrapper);
+                setting_CssClass_Compact.setValue(cssClass);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported page type: " + template);
         }
     }
 }
