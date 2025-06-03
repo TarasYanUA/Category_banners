@@ -72,20 +72,20 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test extends Tes
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
         categoryPage.scrollToAndScreenBanner_TextLinks("700 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - Grid");
-        categoryPage.productListView_ListWithoutOptions.hover().click();
+        categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("702 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - WithoutOptions");
-        categoryPage.productListView_CompactList.hover().click();
+        categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("704 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - CompactList");
 
         selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("706 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - CompactList (RTL)");
-        categoryPage.productListView_ListWithoutOptions.hover().click();
+        categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("708 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - WithoutOptions (RTL)");
-        categoryPage.productListView_Grid.hover().click();
+        categoryPage.productListView_Grid.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_TextLinks("710 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var3Test - Grid (RTL)");
     }

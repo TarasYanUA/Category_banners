@@ -74,20 +74,20 @@ public class Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test e
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("2100 Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test - Grid");
-        categoryPage.productListView_ListWithoutOptions.hover().click();
+        categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("2102 Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test - WithoutOptions");
-        categoryPage.productListView_CompactList.hover().click();
+        categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("2104 Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test - CompactList");
 
         selectLanguage_RTL();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("2106 Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test - CompactList (RTL)");
-        categoryPage.productListView_ListWithoutOptions.hover().click();
+        categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("2108 Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test - WithoutOptions (RTL)");
-        categoryPage.productListView_Grid.hover().click();
+        categoryPage.productListView_Grid.scrollIntoCenter().click();
         Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("2110 Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test - Grid (RTL)");
     }

@@ -111,30 +111,39 @@ public class BannersManagementPage {
     }
 
     public void set_BlockForBanner(String blockName, String wrapper, String cssClass, String template) {
-        typeBlock_Grid.click();
-        button_SelectBlock_Grid.click();
-
-        $(".ui-dialog-title").shouldBe(Condition.enabled);
-        $("#content_user_existing_blocks_products_multicolumns strong[title='" + blockName + "']").click();
-        Selenide.sleep(1500);
-
-        if (!setting_Full_width.isSelected()) {
-            setting_Full_width.click();
-        }
-
         switch (template.toLowerCase()) {
             case "grid":
+                typeBlock_Grid.click();
+                button_SelectBlock_Grid.click();
+                $(".ui-dialog-title").shouldBe(Condition.enabled);
+                $("#content_user_existing_blocks_products_multicolumns strong[title='" + blockName + "']").click();
+                Selenide.sleep(1500);
+                if (!setting_Full_width.isSelected())
+                    setting_Full_width.click();
                 setting_Wrapper_Grid.selectOption(wrapper);
                 setting_CssClass_Grid.setValue(cssClass);
                 break;
+
             case "without options":
+                typeBlock_WithoutOptions.click();
+                button_SelectBlock_WithoutOptions.click();
+                $(".ui-dialog-title").shouldBe(Condition.enabled);
+                $("#content_user_existing_blocks_products_without_options strong[title='" + blockName + "']").click();
+                Selenide.sleep(1500);
                 setting_Wrapper_WithoutOptions.selectOption(wrapper);
                 setting_CssClass_WithoutOptions.setValue(cssClass);
                 break;
+
             case "compact":
+                typeBlock_Compact.click();
+                button_SelectBlock_Compact.click();
+                $(".ui-dialog-title").shouldBe(Condition.enabled);
+                $("#content_select_block_short_list strong[title='" + blockName + "']").click();
+                Selenide.sleep(1500);
                 setting_Wrapper_Compact.selectOption(wrapper);
                 setting_CssClass_Compact.setValue(cssClass);
                 break;
+
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + template);
         }
