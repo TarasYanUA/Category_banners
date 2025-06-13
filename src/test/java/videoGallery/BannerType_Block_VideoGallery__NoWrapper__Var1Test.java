@@ -5,7 +5,6 @@ import admin.Block_Video;
 import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import TestRunner.TestRunner;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
@@ -83,20 +82,19 @@ public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunn
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
         categoryPage.scrollToAndScreenBanner(null, "2200 BannerType_Block_VideoGallery__NoWrapper__Var1Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
-        Selenide.sleep(2000);
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner(null, "2202 BannerType_Block_VideoGallery__NoWrapper__Var1Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
-        Selenide.sleep(2000);
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner(null, "2204 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList");
 
         selectLanguage_RTL();
-        Selenide.sleep(2000);
         categoryPage.scrollToAndScreenBanner(null, "2206 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
-        Selenide.sleep(2000);
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner(null, "2208 BannerType_Block_VideoGallery__NoWrapper__Var1Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
-        Selenide.sleep(2000);
+        Utils.waitForSpinnerDisappear();
         categoryPage.scrollToAndScreenBanner(null, "2210 BannerType_Block_VideoGallery__NoWrapper__Var1Test - Grid (RTL)");
     }
 }

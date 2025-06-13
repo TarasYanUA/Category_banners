@@ -55,6 +55,6 @@ public class TestRunner {
     public void selectLanguage_RTL() {
         $("a[id*='_wrap_language_']").scrollTo().click();
         $(".ty-select-block__list-item a[data-ca-name='ar']").click();
-        Selenide.sleep(2000);
+        Selenide.sleep(3000);
     }
 }
