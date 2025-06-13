@@ -29,7 +29,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Тип контента -    Блок
 * Блок -            Блог
 * На всю ширину -   да
-* Оболочка -        нет
+* Оболочка -        AB: Упрощенный блок
 * Пользовательский CSS-класс - fill--gray
 * Позиция -         6
 
@@ -38,9 +38,9 @@ import static com.codeborne.selenide.Selenide.$x;
 * Заполнение "Блог: прокрутка последних постов"
 */
 
-public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test extends TestRunner {
+public class Blog_ABBlog_RecentPosts_SimplifiedBlock__Var3Test extends TestRunner {
     @Test
-    public void setConfiguration_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test(){
+    public void setConfiguration_Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test(){
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
@@ -49,13 +49,12 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test exte
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         Utils.switchOffSecondBanner();
-
-        if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test']").exists()) {
+        if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
-            bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test");
-            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--gray", "grid");
-            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--gray", "without options");
-            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--gray", "compact");
+            bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test");
+            bannersManagementPage.set_BlockForBanner("Блог", "AB: Упрощенный блок", "fill--gray", "grid");
+            bannersManagementPage.set_BlockForBanner("Блог", "AB: Упрощенный блок", "fill--gray", "without options");
+            bannersManagementPage.set_BlockForBanner("Блог", "AB: Упрощенный блок", "fill--gray", "compact");
             bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
@@ -63,30 +62,30 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test exte
             bannersManagementPage.setting_BlockSettings.click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_Blog blockBlog = new Block_Blog();
-            blockBlog.set_Blog_ABBlog_RecentPostsScroller("blog.recent_posts_scroller");
+            blockBlog.setBlogSettings("АВ Последние посты","8");
         }
     }
 
-    @Test (priority = 2, dependsOnMethods = "setConfiguration_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test")
-    public void check_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test() {
+    @Test (priority = 2, dependsOnMethods = "setConfiguration_Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test")
+    public void check_Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner(null, "1200 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null, "1900 Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "1202 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "1902 Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "1204 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "1904 Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test - CompactList");
 
         selectLanguage_RTL();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "1206 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1906 Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "1208 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1908 Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "1210 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1910 Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test - Grid (RTL)");
     }
 }

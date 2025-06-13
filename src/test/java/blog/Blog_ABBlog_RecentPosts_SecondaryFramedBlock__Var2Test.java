@@ -38,7 +38,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Заполнение "Блог: последние посты"
 */
 
-public class Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test extends TestRunner {
+public class Blog_ABBlog_RecentPosts_SecondaryFramedBlock__Var2Test extends TestRunner {
     @Test
     public void setConfiguration_Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test(){
         CsCart csCart = new CsCart();
@@ -58,14 +58,14 @@ public class Blog_ABBlogRecentPosts_RecentPosts_SecondaryFramedBlock__Var2Test e
                     "AB: Второстепенный блок с обрамлением", "fill--color", "without options");
             bannersManagementPage.set_BlockForBanner("Блог",
                     "AB: Второстепенный блок с обрамлением", "fill--color", "compact");
-            bannersManagementPage.field_Position.sendKeys("6");
+            bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
             //Работаем с настройками блока "Блог"
             bannersManagementPage.setting_BlockSettings.click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_Blog blockBlog = new Block_Blog();
-            blockBlog.set_Blog_ABBlogRecentPosts("3");
+            blockBlog.setBlogSettings("АВ Последние посты","3");
         }
     }
 

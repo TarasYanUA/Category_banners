@@ -38,7 +38,7 @@ import static com.codeborne.selenide.Selenide.$x;
 * Заполнение "Блог: прокрутка последних постов"
 */
 
-public class Blog_ABBlogRecentPosts_RecentPostsScroller_MainBlockSeo__Var2Test extends TestRunner {
+public class Blog_RecentPostsScroller_MainBlockSeo__Var2Test extends TestRunner {
     @Test
     public void setConfiguration_Blog_ABBlogRecentPosts_RecentPostsScroller_MainBlockSeo__Var2Test(){
         CsCart csCart = new CsCart();
@@ -62,7 +62,7 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_MainBlockSeo__Var2Test e
             bannersManagementPage.setting_BlockSettings.click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_Blog blockBlog = new Block_Blog();
-            blockBlog.set_Blog_ABBlog_RecentPostsScroller("blog.recent_posts_scroller");
+            blockBlog.setBlogSettings("прокрутка последних постов", "");
         }
     }
 

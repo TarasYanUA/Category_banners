@@ -104,7 +104,7 @@ public class CsCart implements CheckMenuToBeActive {
             $(".ui-dialog-title").shouldBe(Condition.exist);
             $("strong[title='AB: Видео товаров']").click();
             $("input[name='block_data[description][name]']").shouldBe(Condition.enabled).click();
-            $("input[name='block_data[description][name]']").sendKeys("Видео товаров");
+            $("input[name='block_data[description][name]']").setValue("Видео товаров");
             $("input[name='dispatch[block_manager.update_block]']").click();
         }
     }

@@ -34,14 +34,13 @@ import static com.codeborne.selenide.Selenide.$x;
 * Позиция -         6
 
 Настройки блока "Блог":
-* Шаблон "Блог: текстовые ссылки"
-* Заполнение "Блог: текстовые ссылки"
-* Макс. число элементов - 5
+* Шаблон "АВ: Блог: Последние посты"
+* Заполнение "Блог: последние посты"
 */
 
-public class BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test extends TestRunner {
+public class Blog_ABBlog_RecentPosts_NoWrapper__Var1Test extends TestRunner {
     @Test
-    public void setConfiguration_BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test(){
+    public void setConfiguration_Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test(){
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
@@ -50,9 +49,9 @@ public class BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test extends TestRu
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         Utils.switchOffSecondBanner();
-        if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test']").exists()) {
+        if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
-            bannersManagementPage.field_Name.setValue("BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test");
+            bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test");
             bannersManagementPage.set_BlockForBanner("Блог", "--", "", "grid");
             bannersManagementPage.set_BlockForBanner("Блог", "--", "", "without options");
             bannersManagementPage.set_BlockForBanner("Блог", "--", "", "compact");
@@ -63,30 +62,30 @@ public class BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test extends TestRu
             bannersManagementPage.setting_BlockSettings.click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_Blog blockBlog = new Block_Blog();
-            blockBlog.set_Blog_TextLinks();
+            blockBlog.setBlogSettings("АВ Последние посты", "3");
         }
     }
 
-    @Test (priority = 2, dependsOnMethods = "setConfiguration_BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test")
-    public void check_BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test() {
+    @Test (priority = 2, dependsOnMethods = "setConfiguration_Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test")
+    public void check_Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner(null, "400 BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null, "1700 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "402 BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "1702 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "404 BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "1704 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - CompactList");
 
         selectLanguage_RTL();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "406 BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1706 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "408 BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1708 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner(null, "410 BannerType_Block__Blog_TextLinks_NoWrapper__Var1Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1710 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - Grid (RTL)");
     }
 }
