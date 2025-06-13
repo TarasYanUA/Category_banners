@@ -70,22 +70,22 @@ public class Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test extends Test
     public void check_Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1700 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null, "1700 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1702 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "1702 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1704 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "1704 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - CompactList");
 
         selectLanguage_RTL();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1706 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1706 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1708 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1708 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1710 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1710 Blog_ABBlogRecentPosts_RecentPosts_NoWrapper__Var1Test - Grid (RTL)");
     }
 }

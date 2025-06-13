@@ -58,7 +58,7 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends Tes
                     "AB: Основной блок (SEO)", "fill--color", "without options");
             bannersManagementPage.set_BlockForBanner("Будьте в курсе последних новостей (блог)",
                     "AB: Основной блок (SEO)", "fill--color", "compact");
-            bannersManagementPage.field_Position.sendKeys("6");
+            bannersManagementPage.field_Position.sendKeys(null, "6");
             bannersManagementPage.button_Save.click();
 
             //Работаем с настройками блока "Блог"
@@ -73,21 +73,21 @@ public class BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test extends Tes
     public void check_BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner_TextLinks("600 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null,  "600 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner_TextLinks("602 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "602 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner_TextLinks("604 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "604 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - CompactList");
 
         selectLanguage_RTL();
-        categoryPage.scrollToAndScreenBanner_TextLinks("606 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "606 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner_TextLinks("608 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "608 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner_TextLinks("610 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "610 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - Grid (RTL)");
     }
 }

@@ -2,6 +2,7 @@ package utils;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
@@ -36,6 +37,14 @@ public class Utils {
     public static void setCheckbox(SelenideElement checkbox, boolean shouldBeChecked) {
         if (checkbox.isSelected() != shouldBeChecked) {
             checkbox.scrollIntoCenter().click();
+        }
+    }
+
+    //Из-за ошибки https://abteam.planfix.com/task/43074 пришлось делать условия на присутствие баннеров на странице категории и обновлять страницу, если баннер отсутствует
+    public static void conditionForBannerDisplay(SelenideElement banner){
+        if(!banner.exists()){
+            Selenide.refresh();
+            Selenide.sleep(2000);
         }
     }
 }

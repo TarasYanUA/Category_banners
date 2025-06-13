@@ -70,22 +70,22 @@ public class Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Tes
     public void check_BannerType_Block__Blog_ABBlogRecentPosts_SimplifiedBlock__Var1Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1400 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null, "1400 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1402 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "1402 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1404 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "1404 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - CompactList");
 
         selectLanguage_RTL();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1406 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1406 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1408 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1408 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_ABBlogRecentPosts("1410 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "1410 Blog_ABBlogRecentPosts_RecentPostsScroller_SimplifiedBlock__Var1Test - Grid (RTL)");
     }
 }

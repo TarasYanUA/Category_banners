@@ -71,22 +71,22 @@ public class BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test extends T
     public void check_BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner_TextLinks("900 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null, "900 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("902 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "902 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("904 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "904 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - CompactList");
 
         selectLanguage_RTL();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("906 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "906 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("908 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "908 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Selenide.sleep(2000);
-        categoryPage.scrollToAndScreenBanner_TextLinks("910 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "910 BannerType_Block__Blog_TextLinks_SecondaryBlock__Var2Test - Grid (RTL)");
     }
 }
