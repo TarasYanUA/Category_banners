@@ -15,7 +15,7 @@ public class Utils {
         sleep(1000);
     }
 
-    public static void shiftLanguage(String ruEnAr){
+    public static void closeNotifications() {
         ElementsCollection notifications;
         do {
             notifications = $$(".cm-notification-content.alert-success .cm-notification-close");
@@ -23,6 +23,10 @@ public class Utils {
                 notification.click();
             }
         } while (!notifications.isEmpty());
+    }
+
+    public static void shiftLanguage(String ruEnAr){
+        closeNotifications();
         $("a[id$=_wrap_content]").click();
         $(".content-wrap a[href$='descr_sl=" + ruEnAr + "']").click();
     }

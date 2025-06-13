@@ -90,7 +90,7 @@ public class CsCart implements CheckMenuToBeActive {
     SelenideElement menu_Website = $("a[href$='dispatch=themes.manage'].main-menu-1__link");
     SelenideElement section_Themes = $("#website_themes");
     SelenideElement section_Layouts = $(".nav__actions-bar a[href$='block_manager.manage']");
-    SelenideElement section_Blocks = $("#elm_menu_design_layouts_manage_blocks");
+    SelenideElement section_Blocks = $("#elm_sidebar_nav_item_manage_blocks a");
 
     public void addBlock_VideoGallery() {
         checkMenuToBeActive("dispatch=themes.manage", menu_Website);

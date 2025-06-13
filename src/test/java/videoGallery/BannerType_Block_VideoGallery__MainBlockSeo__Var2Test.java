@@ -6,6 +6,7 @@ import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import TestRunner.TestRunner;
+import com.codeborne.selenide.SelenideElement;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -60,7 +61,11 @@ public class BannerType_Block_VideoGallery__MainBlockSeo__Var2Test extends TestR
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         Utils.switchOffSecondBanner();
         if(!$x("//a[text()='BannerType_Block_VideoGallery__MainBlockSeo__Var2Test']").exists()) {
-            $("a[href$='category_banner_id=3']").click();
+            SelenideElement bannerLink = $("a[href$='category_banner_id=3']");
+            if (bannerLink.exists())
+                bannerLink.click();
+            else
+                $(".nav__actions-adv-buttons .cs-icon.cs-icon--type-plus").click();
             bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__MainBlockSeo__Var2Test");
             bannersManagementPage.set_BlockForBanner("Видео товаров",
                     "AB: Основной блок (SEO)", "fill--color", "grid");
