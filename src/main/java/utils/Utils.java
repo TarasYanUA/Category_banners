@@ -31,10 +31,21 @@ public class Utils {
         $(".content-wrap a[href$='descr_sl=" + ruEnAr + "']").click();
     }
 
-    public static void switchOffSecondBanner(){
-        if($x("//a[@id='sw_select_2_wrap'][contains(text(), 'Вкл.')]").exists()) {   //если баннер2 "Вкл.", то отключаем его
-            $x("//a[@id='sw_select_2_wrap'][contains(text(), 'Вкл.')]").click();
-            $x("//div[contains(@class, 'dropleft open')]//a[@title='Выкл.']").click();
+    public static void switchOffSecondAndNextBanners() {
+        ElementsCollection banners = $$x("//a[starts-with(@id, 'sw_select_') and contains(text(), 'Вкл.')]");
+        for (SelenideElement banner : banners) {
+            String id = banner.getAttribute("id");
+            if (id != null) {
+                try {
+                    int number = Integer.parseInt(id.replace("sw_select_", "").replace("_wrap", ""));
+                    if (number >= 2) {
+                        banner.click();
+                        $x("//div[contains(@class, 'dropleft open')]//a[@title='Выкл.']").click();
+                    }
+                } catch (NumberFormatException ignored) {
+                    // Пропускаем, если id не содержит корректный номер
+                }
+            }
         }
     }
 

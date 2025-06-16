@@ -11,7 +11,6 @@ public class Block_Blog {
     SelenideElement template = $("select[id*='blog_template']");
     SelenideElement tab_Content = $("li[id*='block_contents']");
     SelenideElement limit = $("input[id*='items_properties_items_limit']");
-    SelenideElement lastDays = $("input[id*='content_items_properties_items_last_days']");
     SelenideElement button_Save = $("input[name='dispatch[block_manager.update_block]']");
 
 
@@ -34,7 +33,6 @@ public class Block_Blog {
                 Utils.waitForSpinnerDisappear();
                 tab_Content.click();
                 limit.setValue(limitNumber);
-                lastDays.setValue("1000");
                 break;
 
             default:

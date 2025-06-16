@@ -48,7 +48,7 @@ public class Blog_TextLinks_MainBlockSeo__Var2Test extends TestRunner {
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        Utils.switchOffSecondBanner();
+        Utils.switchOffSecondAndNextBanners();
         if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.field_Name.setValue("BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test");

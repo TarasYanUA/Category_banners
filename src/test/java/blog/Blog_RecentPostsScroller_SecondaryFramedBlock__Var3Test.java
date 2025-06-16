@@ -47,7 +47,7 @@ public class Blog_RecentPostsScroller_SecondaryFramedBlock__Var3Test extends Tes
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        Utils.switchOffSecondBanner();
+        Utils.switchOffSecondAndNextBanners();
         if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryFramedBlock__Var3Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPostsScroller_SecondaryFramedBlock__Var3Test");

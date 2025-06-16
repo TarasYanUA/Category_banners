@@ -47,7 +47,7 @@ public class Blog_RecentPostsScroller_NoWrapper__Var3Test extends TestRunner {
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        Utils.switchOffSecondBanner();
+        Utils.switchOffSecondAndNextBanners();
 
         if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();

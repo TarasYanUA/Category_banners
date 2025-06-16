@@ -47,7 +47,7 @@ public class Blog_ABBlog_RecentPosts_SimplifiedBlock__Var3Test extends TestRunne
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        Utils.switchOffSecondBanner();
+        Utils.switchOffSecondAndNextBanners();
         if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test']").exists()) {
             $("a[href$='category_banner_id=1']").click();
             bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPosts_SimplifiedBlock__Var3Test");

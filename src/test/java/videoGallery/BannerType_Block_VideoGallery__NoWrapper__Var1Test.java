@@ -58,7 +58,7 @@ public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunn
         colorschemeSettings.set_ColorschemeSettings_Var1();
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        Utils.switchOffSecondBanner();
+        Utils.switchOffSecondAndNextBanners();
         if(!$x("//a[text()='BannerType_Block_VideoGallery__NoWrapper__Var1Test']").exists()) {
             SelenideElement bannerLink = $("a[href$='category_banner_id=3']");
             if (bannerLink.exists())

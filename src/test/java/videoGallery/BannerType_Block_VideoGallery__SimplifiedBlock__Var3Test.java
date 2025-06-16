@@ -59,7 +59,7 @@ public class BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test extends Te
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
-        Utils.switchOffSecondBanner();
+        Utils.switchOffSecondAndNextBanners();
         if(!$x("//a[text()='BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test']").exists()) {
             SelenideElement bannerLink = $("a[href$='category_banner_id=3']");
             if (bannerLink.exists())
