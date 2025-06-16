@@ -2,6 +2,7 @@ package videoGallery;
 
 import admin.BannersManagementPage;
 import admin.Block_Video;
+import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import TestRunner.TestRunner;
@@ -48,14 +49,13 @@ public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunn
     @Test(priority = 1)
     public void setConfiguration_BannerType_Block_VideoGallery__NoWrapper__Var1Test(){
         CsCart csCart = new CsCart();
-        /*csCart.installAddonAtAddonsManager(csCart.gearwheel_VideoGallery, "ab__video_gallery", "form[name=ab_install_form_54312]");
+        csCart.installAddonAtAddonsManager(csCart.gearwheel_VideoGallery, "ab__video_gallery", "form[name=ab_install_form_54312]");
         addVideo();
         csCart.addBlock_VideoGallery();
 
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
         colorschemeSettings.set_ColorschemeSettings_Var1();
-*/
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         Utils.switchOffSecondBanner();
