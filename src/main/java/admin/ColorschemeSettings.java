@@ -36,9 +36,9 @@ public class ColorschemeSettings {
     public void set_ColorschemeSettings_Var1() {
         fieldOfActiveColorscheme.click();
         activateColorscheme.click();
-        Selenide.sleep(3000);
+        Selenide.sleep(2000);
         setting_RoundCornersForElements.selectOptionByValue("full");
-        Utils.setCheckbox(setting_RoundCornersOfBlocks, true);
+        setting_RoundCornersOfBlocks.selectOptionByValue("full");
         Utils.setCheckbox(setting_DisplayHeadersInCapitalLetters, false);
         tab_ProductLists.click();
         setting_FrameType.selectOptionByValue("solid_without_margins");
@@ -62,7 +62,7 @@ public class ColorschemeSettings {
         activateColorscheme.click();
         Selenide.sleep(2000);
         setting_RoundCornersForElements.selectOptionByValue("do_not_use");
-        Utils.setCheckbox(setting_RoundCornersOfBlocks, false);
+        setting_RoundCornersOfBlocks.selectOptionByValue("do_not_use");
         Utils.setCheckbox(setting_DisplayHeadersInCapitalLetters, true);
         tab_ProductLists.click();
         setting_FrameType.selectOptionByValue("none");
@@ -86,7 +86,7 @@ public class ColorschemeSettings {
         activateColorscheme.click();
         Selenide.sleep(2000);
         setting_RoundCornersForElements.selectOptionByValue("little");
-        Utils.setCheckbox(setting_RoundCornersOfBlocks, true);
+        setting_RoundCornersOfBlocks.selectOptionByValue("little");
         Utils.setCheckbox(setting_DisplayHeadersInCapitalLetters, true);
         tab_ProductLists.click();
         setting_FrameType.selectOptionByValue("solid_with_margins");
