@@ -33,9 +33,10 @@ public class AssertsPage {
 
         String message = messages.get(selector);
         if (message == null)
-            throw new IllegalArgumentException("No message found for selector: " + selector);
+            throw new IllegalArgumentException("No assert found for selector: " + selector);
 
-        softAssert.assertTrue($(selector).exists(), message + "\nБаннеры могут отсутствовать из-за ошибки #43074");
+        softAssert.assertTrue($(selector).exists(), message
+                + "\nБаннеры могут отсутствовать из-за ошибки #43074");
         //Есть ошибка видимости баннеров https://abteam.planfix.com/task/43074
     }
 }

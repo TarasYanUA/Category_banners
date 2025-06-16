@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$x;
 /*
 * Устанавливаем модуль "Видео галерея"
 * Добавляем несколько видео товару 'Apple - iPhone 5c'
-* Создаём блок "Видео товаров"
+* Создаём блок "Видео обзоры"
 
 Настройки цветосхемы:
  Вкладка "Общие":
@@ -31,13 +31,13 @@ import static com.codeborne.selenide.Selenide.$x;
 
 Настройки баннера:
     * Тип контента -    Блок
-    * Блок -            Видео товаров
+    * Блок -            Видео обзоры
     * На всю ширину -   да
     * Оболочка -        AB: Основной блок (SEO)
     * Пользовательский CSS-класс - fill--color
     * Позиция -         6
 
-Настройки блока "Видео товаров":
+Настройки блока "Видео обзоры":
 * Количество колонок в списке - 3
 * Отобразить ссылку на товар -  нет
 * Отобразить заголовок видео -  нет
@@ -64,23 +64,29 @@ public class BannerType_Block_VideoGallery__MainBlockSeo__Var2Test extends TestR
             SelenideElement bannerLink = $("a[href$='category_banner_id=3']");
             if (bannerLink.exists())
                 bannerLink.click();
-            else
+            else {   //Должна быть только первая строка, но из-за ошибки https://abteam.planfix.com/task/54635 нужно было дописывать
                 $(".nav__actions-adv-buttons .cs-icon.cs-icon--type-plus").click();
+                bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__MainBlockSeo__Var2Test");
+                bannersManagementPage.button_Save.click();
+            }
+
             bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__MainBlockSeo__Var2Test");
-            bannersManagementPage.set_BlockForBanner("Видео товаров",
+            bannersManagementPage.addCategoryToBanner();
+            bannersManagementPage.set_BlockForBanner("Видео обзоры",
                     "AB: Основной блок (SEO)", "fill--color", "grid");
-            bannersManagementPage.set_BlockForBanner("Видео товаров",
+            bannersManagementPage.set_BlockForBanner("Видео обзоры",
                     "AB: Основной блок (SEO)", "fill--color", "without options");
-            bannersManagementPage.set_BlockForBanner("Видео товаров",
+            bannersManagementPage.set_BlockForBanner("Видео обзоры",
                     "AB: Основной блок (SEO)", "fill--color", "compact");
             bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
-            //Работаем с настройками блока "Видео товаров"
-            bannersManagementPage.setting_BlockSettings.click();
+            //Работаем с настройками блока "Видео обзоры"
+            bannersManagementPage.setting_BlockSettings.scrollIntoCenter().click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_Video blockVideo = new Block_Video();
             blockVideo.setSettingsForVideoBlock_Var2();
+            bannersManagementPage.button_Save.click();
         }
     }
 

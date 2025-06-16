@@ -16,6 +16,9 @@ public class BannersManagementPage {
     public ElementsCollection status_Disabled = $$x("//a[@id][contains(text(), 'Выкл.')]");
     public SelenideElement field_Name = $("#elm_category_banner");
     public SelenideElement setting_BlockSettings = $(".cm-dialog-opener.action-properties.bm-action-properties");
+    SelenideElement button_AddCategories = $("a[id^='opener_picker_categories_']");
+    SelenideElement category_Electronics = $("#input_cat_166");
+    SelenideElement button_SaveCategories = $(".buttons-container-picker .cm-dialog-closer");
 
     //Настройки для Вид списка "Сетка"
     public SelenideElement typeImage_Grid = $("input#image_products_multicolumns[value='I']");
@@ -67,11 +70,28 @@ public class BannersManagementPage {
         }
     }
 
-    public void set_ImageForBanner() {
+    private void createAutobanner() {
         String bannerName_Grid = "category_banners_main_image-1";
         String bannerName_WithoutOptions = "category_banners_list_image-1";
         String bannerName_CompactList = "category_banners_short_list_pair-1";
 
+        $("a[href$='category_banner_id=1']").click();
+        field_Name.setValue("Autobanner of Image type");
+
+        typeImage_Grid.click();
+        button_Server_Grid.click();
+        selectPictureForBanner(bannerName_Grid);
+
+        typeImage_WithoutOptions.click();
+        button_Server_WithoutOptions.click();
+        selectPictureForBanner(bannerName_WithoutOptions);
+
+        typeImage_Compact.click();
+        button_Server_Compact.click();
+        selectPictureForBanner(bannerName_CompactList);
+    }
+
+    public void set_ImageForBanner() {
         if (!status_Disabled.isEmpty()) {   //если присутствует статус "Выкл.", то включаем баннеры
             for (int i = 0; i <= status_Disabled.size(); i++) {
                 status_Disabled.get(i).shouldBe(Condition.enabled).click();
@@ -81,31 +101,12 @@ public class BannersManagementPage {
 
         if (!$x("//a[text()='Autobanner of Image type']").exists()) {
             Utils.shiftLanguage("ru");
-            $("a[href$='category_banner_id=1']").click();
-            field_Name.setValue("Autobanner of Image type");
-            typeImage_Grid.click();
-            button_Server_Grid.click();
-            selectPictureForBanner(bannerName_Grid);
-            typeImage_WithoutOptions.click();
-            button_Server_WithoutOptions.click();
-            selectPictureForBanner(bannerName_WithoutOptions);
-            typeImage_Compact.click();
-            button_Server_Compact.click();
-            selectPictureForBanner(bannerName_CompactList);
+            createAutobanner();
             field_Position.setValue("2");
             button_Save.click();
 
             Utils.shiftLanguage("ar");
-            field_Name.setValue("Autobanner of Image type");
-            typeImage_Grid.click();
-            button_Server_Grid.click();
-            selectPictureForBanner(bannerName_Grid);
-            typeImage_WithoutOptions.click();
-            button_Server_WithoutOptions.click();
-            selectPictureForBanner(bannerName_WithoutOptions);
-            typeImage_Compact.click();
-            button_Server_Compact.click();
-            selectPictureForBanner(bannerName_CompactList);
+            createAutobanner();
             button_Save.click();
         }
     }
@@ -147,5 +148,13 @@ public class BannersManagementPage {
             default:
                 throw new IllegalArgumentException("Unsupported page type: " + template);
         }
+    }
+
+    public void addCategoryToBanner() {
+        button_AddCategories.click();
+        Utils.waitForSpinnerDisappear();
+        category_Electronics.click();
+        button_SaveCategories.click();
+        $(".ui-dialog-title").shouldBe(Condition.disappear);
     }
 }

@@ -75,7 +75,6 @@ public class CsCart implements CheckMenuToBeActive {
         if (!$(addonMenu).exists()) {
             gearwheel_AddonsManager.click();
             section_ListOfAvailableAddons.click();
-            addonsManagerField_Search.click();
             addonsManagerField_Search.setValue(addonCode).pressEnter();
             $(installButton).click();
             Alert alert = Selenide.webdriver().driver().switchTo().alert();
@@ -102,9 +101,8 @@ public class CsCart implements CheckMenuToBeActive {
         if ($x("//p[text()='Здесь пока ничего нет']").exists()) {
             $(".cs-icon.icon-plus").click();
             $(".ui-dialog-title").shouldBe(Condition.exist);
-            $("strong[title='AB: Видео товаров']").click();
-            $("input[name='block_data[description][name]']").shouldBe(Condition.enabled).click();
-            $("input[name='block_data[description][name]']").setValue("Видео товаров");
+            $("strong[title='AB: Видео обзоры']").click();
+            $("input[name='block_data[description][name]']").shouldBe(Condition.enabled).setValue("Видео обзоры");
             $("input[name='dispatch[block_manager.update_block]']").click();
         }
     }

@@ -36,7 +36,7 @@ public class ColorschemeSettings {
     public void set_ColorschemeSettings_Var1() {
         fieldOfActiveColorscheme.click();
         activateColorscheme.click();
-        Selenide.sleep(2000);
+        Selenide.sleep(3000);
         setting_RoundCornersForElements.selectOptionByValue("full");
         Utils.setCheckbox(setting_RoundCornersOfBlocks, true);
         Utils.setCheckbox(setting_DisplayHeadersInCapitalLetters, false);

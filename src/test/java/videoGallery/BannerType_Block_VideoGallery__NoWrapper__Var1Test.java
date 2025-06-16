@@ -2,10 +2,10 @@ package videoGallery;
 
 import admin.BannersManagementPage;
 import admin.Block_Video;
-import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import TestRunner.TestRunner;
+import com.codeborne.selenide.SelenideElement;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.$x;
 /*
 * Устанавливаем модуль "Видео галерея"
 * Добавляем несколько видео товару 'Apple - iPhone 5c'
-* Создаём блок "Видео товаров"
+* Создаём блок "Видео обзоры"
 
 Настройки цветосхемы:
         Вкладка "Общие":
@@ -30,13 +30,13 @@ import static com.codeborne.selenide.Selenide.$x;
 
 Настройки баннера:
     * Тип контента -    Блок
-    * Блок -            Видео товаров
+    * Блок -            Видео обзоры
     * На всю ширину -   да
     * Оболочка -        нет
     * Пользовательский CSS-класс - нет
     * Позиция -         6
 
-Настройки блока "Видео товаров":
+Настройки блока "Видео обзоры":
     * Количество колонок в списке - 4
     * Отобразить ссылку на товар -  да
     * Отобразить заголовок видео -  да
@@ -48,31 +48,40 @@ public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunn
     @Test(priority = 1)
     public void setConfiguration_BannerType_Block_VideoGallery__NoWrapper__Var1Test(){
         CsCart csCart = new CsCart();
-        csCart.installAddonAtAddonsManager(csCart.gearwheel_VideoGallery, "ab__video_gallery", "form[name=ab_install_form_54312]");
+        /*csCart.installAddonAtAddonsManager(csCart.gearwheel_VideoGallery, "ab__video_gallery", "form[name=ab_install_form_54312]");
         addVideo();
         csCart.addBlock_VideoGallery();
 
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
         colorschemeSettings.set_ColorschemeSettings_Var1();
-
+*/
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         Utils.switchOffSecondBanner();
         if(!$x("//a[text()='BannerType_Block_VideoGallery__NoWrapper__Var1Test']").exists()) {
-            $("a[href$='category_banner_id=3']").click();
-            bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
-            bannersManagementPage.set_BlockForBanner("Видео товаров", "--", "", "grid");
-            bannersManagementPage.set_BlockForBanner("Видео товаров", "--", "", "without options");
-            bannersManagementPage.set_BlockForBanner("Видео товаров", "--", "", "compact");
-            bannersManagementPage.field_Position.setValue("6");
-            bannersManagementPage.button_Save.click();
+            SelenideElement bannerLink = $("a[href$='category_banner_id=3']");
+            if (bannerLink.exists())
+                bannerLink.click();
+            else {   //Должна быть только первая строка, но из-за ошибки https://abteam.planfix.com/task/54635 нужно было дописывать
+                $(".nav__actions-adv-buttons .cs-icon.cs-icon--type-plus").click();
+                bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
+                bannersManagementPage.button_Save.click();
+            }
 
-            //Работаем с настройками блока "Видео товаров"
-            bannersManagementPage.setting_BlockSettings.click();
+            bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
+            bannersManagementPage.addCategoryToBanner();
+            bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "grid");
+            bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "without options");
+            bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "compact");
+            bannersManagementPage.field_Position.setValue("6");
+
+            // Работаем с настройками блока "Видео обзоры"
+            bannersManagementPage.setting_BlockSettings.scrollIntoCenter().click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_Video blockVideo = new Block_Video();
             blockVideo.setSettingsForVideoBlock_Var1();
+            bannersManagementPage.button_Save.click();
         }
     }
 
