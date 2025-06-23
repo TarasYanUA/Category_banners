@@ -27,9 +27,9 @@
            <class name = "blog.Blog_ABBlog_RecentPosts_SecondaryFramedBlock__Var2Test" />
 
            <!-- Тест-кейсы для баннеров модуля "Видео галерея" -->
-<!--            <class name = "videoGallery.BannerType_Block_VideoGallery__NoWrapper__Var1Test" />
-            <class name = "videoGallery.BannerType_Block_VideoGallery__MainBlockSeo__Var2Test" />
-            <class name = "videoGallery.BannerType_Block_VideoGallery__SimplifiedBlock__Var3Test" />-->
+<!--            <class name = "videoGallery.VideoGallery__NoWrapper__Var1Test" />
+            <class name = "videoGallery.VideoGallery__MainBlockSeo__Var2Test" />
+            <class name = "videoGallery.VideoGallery__SimplifiedBlock__Var3Test" />-->
         </classes>
     </test>
 </suite>

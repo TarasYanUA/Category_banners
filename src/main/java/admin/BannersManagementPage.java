@@ -157,4 +157,9 @@ public class BannersManagementPage {
         button_SaveCategories.click();
         $(".ui-dialog-title").shouldBe(Condition.disappear);
     }
+
+    public void clickBannerLinkIfExists() {
+        SelenideElement bannerLink = $("a[href$='category_banner_id=1']");
+        (bannerLink.exists() ? bannerLink : $(".nav__actions-adv-buttons .cs-icon.cs-icon--type-plus")).click();
+    }
 }

@@ -6,7 +6,6 @@ import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
 import TestRunner.TestRunner;
-import com.codeborne.selenide.SelenideElement;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -45,13 +44,13 @@ import static com.codeborne.selenide.Selenide.$x;
     * Количество видео -            10
 */
 
-public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunner implements AddVideo {
+public class VideoGallery__NoWrapper__Var1Test extends TestRunner implements AddVideo {
     @Test(priority = 1)
-    public void setConfiguration_BannerType_Block_VideoGallery__NoWrapper__Var1Test(){
+    public void setConfiguration_VideoGallery__NoWrapper__Var1Test() {
         CsCart csCart = new CsCart();
         csCart.installAddonAtAddonsManager(csCart.gearwheel_VideoGallery, "ab__video_gallery", "form[name=ab_install_form_54312]");
         addVideo();
-        csCart.addBlock_VideoGallery();
+        csCart.createBlockIfNotExists("ab__vg_videos", "Видео обзоры");
 
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
@@ -59,51 +58,46 @@ public class BannerType_Block_VideoGallery__NoWrapper__Var1Test extends TestRunn
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         Utils.switchOffSecondAndNextBanners();
-        if(!$x("//a[text()='BannerType_Block_VideoGallery__NoWrapper__Var1Test']").exists()) {
-            SelenideElement bannerLink = $("a[href$='category_banner_id=3']");
-            if (bannerLink.exists())
-                bannerLink.click();
-            else {   //Должна быть только первая строка, но из-за ошибки https://abteam.planfix.com/task/54635 нужно было дописывать
-                $(".nav__actions-adv-buttons .cs-icon.cs-icon--type-plus").click();
-                bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
-                bannersManagementPage.button_Save.click();
-            }
-
-            bannersManagementPage.field_Name.setValue("BannerType_Block_VideoGallery__NoWrapper__Var1Test");
-            bannersManagementPage.addCategoryToBanner();
-            bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "grid");
-            bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "without options");
-            bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "compact");
-            bannersManagementPage.field_Position.setValue("6");
-
-            // Работаем с настройками блока "Видео обзоры"
-            bannersManagementPage.setting_BlockSettings.scrollIntoCenter().click();
-            $(".ui-dialog-title").shouldBe(Condition.enabled);
-            Block_Video blockVideo = new Block_Video();
-            blockVideo.setSettingsForVideoBlock_Var1();
+        if (!$x("//a[text()='VideoGallery__NoWrapper__Var1Test']").exists()) {
+            bannersManagementPage.clickBannerLinkIfExists();
+            //Нижних двух строк не должно быть, но из-за ошибки https://abteam.planfix.com/task/54635 нужно было дописывать
+            bannersManagementPage.field_Name.setValue("VideoGallery__MainBlockSeo__Var2Test");
             bannersManagementPage.button_Save.click();
         }
+        bannersManagementPage.field_Name.setValue("VideoGallery__NoWrapper__Var1Test");
+        bannersManagementPage.addCategoryToBanner();
+        bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "grid");
+        bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "without options");
+        bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "compact");
+        bannersManagementPage.field_Position.setValue("6");
+
+        // Работаем с настройками блока "Видео обзоры"
+        bannersManagementPage.setting_BlockSettings.scrollIntoCenter().click();
+        $(".ui-dialog-title").shouldBe(Condition.enabled);
+        Block_Video blockVideo = new Block_Video();
+        blockVideo.setSettingsForVideoBlock_Var1();
+        bannersManagementPage.button_Save.click();
     }
 
-    @Test(priority = 2, dependsOnMethods = "setConfiguration_BannerType_Block_VideoGallery__NoWrapper__Var1Test")
-    public void check_BannerType_Block_VideoGallery_Var1Test(){
+    @Test(priority = 2, dependsOnMethods = "setConfiguration_VideoGallery__NoWrapper__Var1Test")
+    public void check_VideoGallery_Var1Test() {
         CsCart csCart = new CsCart();
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner(null, "2200 BannerType_Block_VideoGallery__NoWrapper__Var1Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null, "2200 VideoGallery__NoWrapper__Var1Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "2202 BannerType_Block_VideoGallery__NoWrapper__Var1Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "2202 VideoGallery__NoWrapper__Var1Test - WithoutOptions");
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "2204 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "2204 VideoGallery__NoWrapper__Var1Test - CompactList");
 
         selectLanguage_RTL();
-        categoryPage.scrollToAndScreenBanner(null, "2206 BannerType_Block_VideoGallery__NoWrapper__Var1Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "2206 VideoGallery__NoWrapper__Var1Test - CompactList (RTL)");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "2208 BannerType_Block_VideoGallery__NoWrapper__Var1Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "2208 VideoGallery__NoWrapper__Var1Test - WithoutOptions (RTL)");
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "2210 BannerType_Block_VideoGallery__NoWrapper__Var1Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "2210 VideoGallery__NoWrapper__Var1Test - Grid (RTL)");
     }
 }

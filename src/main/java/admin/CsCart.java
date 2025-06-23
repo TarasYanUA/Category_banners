@@ -48,6 +48,7 @@ public class CsCart implements CheckMenuToBeActive {
     SelenideElement gearwheel_AddonsManager = $("#addon_ab__addons_manager").$(".nowrap.inline-block-basic");
     SelenideElement section_ListOfAvailableAddons = $("#addon_ab__addons_manager a[href$='ab__am.addons']");
     public SelenideElement gearwheel_VideoGallery = $("tr#addon_ab__video_gallery button.btn.dropdown-toggle");
+    public SelenideElement gearwheel_FastNavigation = $("tr#addon_ab__fast_navigation button.btn.dropdown-toggle");
     SelenideElement addonsManagerField_Search = $("#ab__am_search");
 
 
@@ -90,20 +91,44 @@ public class CsCart implements CheckMenuToBeActive {
     SelenideElement section_Themes = $("#website_themes");
     SelenideElement section_Layouts = $(".nav__actions-bar a[href$='block_manager.manage']");
     SelenideElement section_Blocks = $("#elm_sidebar_nav_item_manage_blocks a");
+    SelenideElement saveNewBlock = $("input[name='dispatch[block_manager.update_block]']");
+    SelenideElement tab_Content = $("li[id*='block_contents']");
+    SelenideElement contentMenu = $("select[name=\"block_data[content][menu]\"]");
 
-    public void addBlock_VideoGallery() {
+    void navigateTo_SectionBlocks() {
         checkMenuToBeActive("dispatch=themes.manage", menu_Website);
         section_Themes.click();
         section_Layouts.click();
         section_Blocks.click();
-        $("#elm_type").selectOptionByValue("ab__vg_videos");
+    }
+
+    void searchBlockByType(String blockType) {
+        $("#elm_type").selectOptionByValue(blockType);
         $(".advanced-search-field__search").click();
-        if ($x("//p[text()='Здесь пока ничего нет']").exists()) {
-            $(".cs-icon.icon-plus").click();
-            $(".ui-dialog-title").shouldBe(Condition.exist);
-            $("strong[title='AB: Видео обзоры']").click();
-            $("input[name='block_data[description][name]']").shouldBe(Condition.enabled).setValue("Видео обзоры");
-            $("input[name='dispatch[block_manager.update_block]']").click();
+    }
+
+    void openNewBlockAndGiveTitle(String title) {
+        $("#opener_block_type_list").click();
+        $(".ui-dialog-title").shouldBe(Condition.exist);
+        $("strong[title*='" + title + "']").click();
+        $("input[name='block_data[description][name]']").shouldBe(Condition.enabled).setValue(title);
+    }
+
+    public void createBlockIfNotExists(String blockType, String blockTitle) {
+        createBlockIfNotExists(blockType, blockTitle, null);
+    }
+
+    public void createBlockIfNotExists(String blockType, String blockTitle, String contentType) {
+        navigateTo_SectionBlocks();
+        searchBlockByType(blockType);
+        if ($x("//p[text()='Здесь пока ничего нет']").exists() ||
+                !$x("//div[@id='pagination_contents']//a[text()='" + blockTitle + "']").exists()) {
+            openNewBlockAndGiveTitle(blockTitle);
+            if (contentType != null) {
+                tab_Content.click();
+                contentMenu.selectOptionContainingText(contentType);
+            }
+            saveNewBlock.click();
         }
     }
 }
