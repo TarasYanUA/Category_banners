@@ -32,9 +32,9 @@
             <class name="videoGallery.VideoGallery__SimplifiedBlock__Var3Test"/>
 
             <!-- Тест-кейсы для баннеров модуля "Быстрая навигация" -->
-            <class name="fastNavigation.FastNavigation__SingleLevel_Scroller__Var1Test"/>
-            <class name="fastNavigation.FastNavigation__SingleLevel_Grid__Var2Test"/>
-            <class name="fastNavigation.FastNavigation__SimplifiedBlock__Var3Test"/>
+            <class name="fastNavigation.FastNavigation__SingleLevel_Scroller__Var2Test"/>
+            <class name="fastNavigation.FastNavigation__SingleLevel_Grid__Var1Test"/>
+            <class name="fastNavigation.FastNavigation__TwoLevel__Var3Test"/>
         </classes>
     </test>
 </suite>

@@ -29,70 +29,81 @@ import static com.codeborne.selenide.Selenide.$x;
 
 Настройки баннера:
     * Тип контента -    Блок
-    * Блок -            Быстрая навигация
+    * Блок -            Видео обзоры
     * На всю ширину -   да
-    * Оболочка -        AB: Основной блок (SEO)
-    * Пользовательский CSS-класс - fill--color
+    * Оболочка -        AB: Упрощенный блок
+    * Пользовательский CSS-класс - fill--gray
     * Позиция -         4-6
 
 Настройки блока "Быстрая навигация":
-    * Шаблон -              Одноуровневая навигация
-    * Тип отображения -     Сетка
-    * Количество колонок в списке -  5
+    * Шаблон -              Двухуровневая навигация
+    * Количество колонок в списке -  4
 */
 
-public class FastNavigation__SingleLevel_Grid__Var2Test extends TestRunner {
+public class FastNavigation__TwoLevel__Var3Test extends TestRunner {
     @Test(priority = 1)
-    public void setConfiguration_FastNavigation__SingleLevel_Grid__Var2Test() {
+    public void setConfiguration_FastNavigation__TwoLevel__Var3Test() {
         String blockTitle = "Быстрая навигация";
         CsCart csCart = new CsCart();
-        csCart.installAddonAtAddonsManager(csCart.gearwheel_FastNavigation, "ab__fast_navigation", "form[name=ab_install_form_54311]");
+        csCart.installAddonAtAddonsManager(csCart.gearwheel_FastNavigation, "ab__fast_navigation", "form[name=ab_install_form_54331]");
         csCart.createBlockIfNotExists("ab__fast_navigation", blockTitle, "Fast navigation");
 
         //Работаем с настройками цветосхемы
         ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
-        colorschemeSettings.set_ColorschemeSettings_Var2();
+        colorschemeSettings.set_ColorschemeSettings_Var3();
 
         //Работаем с баннерами
         BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
         Utils.switchOffSecondAndNextBanners();
-        if (!$x("//a[text()='FastNavigation__SingleLevel_Grid__Var2Test']").exists()) {
+        if (!$x("//a[text()='FastNavigation__TwoLevel__Var3Test']").exists()) {
             bannersManagementPage.clickBannerLinkIfExists();
-            bannersManagementPage.field_Name.setValue("FastNavigation__SingleLevel_Grid__Var2Test");
+            bannersManagementPage.field_Name.setValue("FastNavigation__TwoLevel__Var3Test");
             bannersManagementPage.addCategoryToBanner();
-            bannersManagementPage.set_BlockForBanner(blockTitle, "AB: Основной блок (SEO)", "fill--color", "grid");
-            bannersManagementPage.set_BlockForBanner(blockTitle, "AB: Основной блок (SEO)", "fill--color", "without options");
-            bannersManagementPage.set_BlockForBanner(blockTitle, "AB: Основной блок (SEO)", "fill--color", "compact");
+            bannersManagementPage.set_BlockForBanner(blockTitle, "AB: Упрощенный блок", "fill--gray", "grid");
+            bannersManagementPage.set_BlockForBanner(blockTitle, "AB: Упрощенный блок", "fill--gray", "without options");
+            bannersManagementPage.set_BlockForBanner(blockTitle, "AB: Упрощенный блок", "fill--gray", "compact");
             bannersManagementPage.field_Position.setValue("4-6");
 
             // Работаем с настройками блока "Быстрая навигация"
             bannersManagementPage.setting_BlockSettings.scrollIntoCenter().click();
             $(".ui-dialog-title").shouldBe(Condition.enabled);
             Block_FastNavigation blockFastNavigation = new Block_FastNavigation();
-            blockFastNavigation.setSettingsForBlock_FastNavigation("Одноуровневая навигация", "Сетка", "5");
+            blockFastNavigation.setSettingsForBlock_FastNavigation("Двухуровневая навигация", "", "4");
             bannersManagementPage.button_Save.click();
         }
     }
 
-    @Test(priority = 2, dependsOnMethods = "setConfiguration_FastNavigation__SingleLevel_Grid__Var2Test")
-    public void check_FastNavigation__SingleLevel_Grid__Var2Test() {
+    @Test(priority = 2, dependsOnMethods = "setConfiguration_FastNavigation__TwoLevel__Var3Test")
+    public void check_FastNavigation__TwoLevel__Var3Test() {
         CsCart csCart = new CsCart();
+        Block_FastNavigation blockFastNavigation = new Block_FastNavigation();
+
         CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
-        categoryPage.scrollToAndScreenBanner(null, "3200 FastNavigation__SingleLevel_Grid__Var2Test - Grid");
+        categoryPage.scrollToAndScreenBanner(null, "3300 FastNavigation__TwoLevel__Var3Test - Grid");
+        blockFastNavigation.clickCategoryInBlockAndScreen("3302 FastNavigation__TwoLevel__Var3Test, Second level - Grid");
+
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "3202 FastNavigation__SingleLevel_Grid__Var2Test - WithoutOptions");
+        categoryPage.scrollToAndScreenBanner(null, "3304 FastNavigation__TwoLevel__Var3Test - WithoutOptions");
+        blockFastNavigation.clickCategoryInBlockAndScreen("3306 FastNavigation__TwoLevel__Var3Test, Second level - WithoutOptions");
+
         categoryPage.productListView_CompactList.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "3204 FastNavigation__SingleLevel_Grid__Var2Test - CompactList");
+        categoryPage.scrollToAndScreenBanner(null, "3308 FastNavigation__TwoLevel__Var3Test - CompactList");
+        blockFastNavigation.clickCategoryInBlockAndScreen("3310 FastNavigation__TwoLevel__Var3Test, Second level - CompactList");
 
         selectLanguage_RTL();
-        categoryPage.scrollToAndScreenBanner(null, "3206 FastNavigation__SingleLevel_Grid__Var2Test - CompactList (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "3312 FastNavigation__TwoLevel__Var3Test - CompactList (RTL)");
+        blockFastNavigation.clickCategoryInBlockAndScreen("3314 FastNavigation__TwoLevel__Var3Test, Second level - CompactList (RTL)");
+
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "3208 FastNavigation__SingleLevel_Grid__Var2Test - WithoutOptions (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "3316 FastNavigation__TwoLevel__Var3Test - WithoutOptions (RTL)");
+        blockFastNavigation.clickCategoryInBlockAndScreen("3318 FastNavigation__TwoLevel__Var3Test, Second level - WithoutOptions (RTL)");
+
         categoryPage.productListView_Grid.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
-        categoryPage.scrollToAndScreenBanner(null, "3210 FastNavigation__SingleLevel_Grid__Var2Test - Grid (RTL)");
+        categoryPage.scrollToAndScreenBanner(null, "3320 FastNavigation__TwoLevel__Var3Test - Grid (RTL)");
+        blockFastNavigation.clickCategoryInBlockAndScreen("3322 FastNavigation__TwoLevel__Var3Test, Second level - Grid (RTL)");
     }
 }
