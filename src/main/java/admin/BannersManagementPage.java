@@ -104,6 +104,8 @@ public class BannersManagementPage {
             createAutobanner();
             field_Position.setValue("2");
             button_Save.click();
+            $(".ab__am-menu").click();
+            $(".dropdown-menu a[href$='dispatch=ab__category_banners.manage']").click();
 
             Utils.shiftLanguage("ar");
             createAutobanner();

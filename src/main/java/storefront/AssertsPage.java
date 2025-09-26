@@ -11,7 +11,7 @@ public class AssertsPage {
         super();
     }
 
-    SoftAssert softAssert = new SoftAssert();
+    SoftAssert softAssert = CollectAssertMessages.getSoftAssertions();
 
     public String firstBannerForGrid = "img[src*='category_banners_main_image-1']";
     public String firstBannerForListWithoutOptions = "img[src*='category_banners_list_image-1']";

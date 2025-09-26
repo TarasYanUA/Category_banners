@@ -15,6 +15,7 @@ public interface CheckMenuToBeActive {
         try {
             if (elements.isEmpty())
                 menu.click();
+            Selenide.sleep(1000);
         } catch (ElementNotFound e) {
         }
     }
