@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TestRunner {
-    public static final String BASIC_URL = "https://trs.test.abt.team/4184ultru/admin.php?dispatch=addons.manage";
+    public static final String BASIC_URL = "https://trs.test.abt.team/4201ultru/admin.php?dispatch=addons.manage";
     private SoftAssert softAssert;
 
     @BeforeMethod
