@@ -5,7 +5,8 @@ import admin.Block_Blog;
 import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
-import TestRunner.TestRunner;
+import testRunner.TestRunner;
+import enums.BlockTitle;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -42,19 +43,28 @@ public class Blog_RecentPostsScroller_NoWrapper__Var3Test extends TestRunner {
     public void setConfiguration_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test(){
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
-        ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
+        ColorschemeSettings colorschemeSettings = csCart.navigateTo_ColorSchemeSettings();
         colorschemeSettings.set_ColorschemeSettings_Var3();
 
         //Работаем с баннерами
-        BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
+        BannersManagementPage bannersManagementPage = csCart.navigateTo_BannersManagement();
         Utils.switchOffSecondAndNextBanners();
 
         if(!$x("//a[text()='Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test']").exists()) {
-            $("a[href$='category_banner_id=1']").click();
+            bannersManagementPage.clickBannerLinkIfExists();
             bannersManagementPage.field_Name.setValue("Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test");
-            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--gray", "grid");
-            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--gray", "without options");
-            bannersManagementPage.set_BlockForBanner("Блог", "--", "fill--gray", "compact");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.BLOG.value(),
+                    "--",
+                    "fill--gray",
+                    "grid");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.BLOG.value(),
+                    "--",
+                    "fill--gray",
+                    "without options");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.BLOG.value(),
+                    "--",
+                    "fill--gray",
+                    "compact");
             bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
@@ -69,7 +79,7 @@ public class Blog_RecentPostsScroller_NoWrapper__Var3Test extends TestRunner {
     @Test (priority = 2, dependsOnMethods = "setConfiguration_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test")
     public void check_Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test() {
         CsCart csCart = new CsCart();
-        CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
+        CategoryPage categoryPage = csCart.navigateTo_CategoryPage(1);
         categoryPage.scrollToAndScreenBanner(null, "1200 Blog_ABBlogRecentPosts_RecentPostsScroller_NoWrapper__Var3Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();

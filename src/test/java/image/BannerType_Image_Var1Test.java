@@ -3,7 +3,7 @@ package image;
 import admin.BannersManagementPage;
 import admin.ColorschemeSettings;
 import admin.CsCart;
-import TestRunner.TestRunner;
+import testRunner.TestRunner;
 import utils.Utils;
 import org.testng.annotations.Test;
 import storefront.AssertsPage;
@@ -34,11 +34,11 @@ public class BannerType_Image_Var1Test extends TestRunner {
         BannersManagementPage bannersManagementPage = new BannersManagementPage();
 
         //Работаем с настройками цветосхемы
-        ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
+        ColorschemeSettings colorschemeSettings = csCart.navigateTo_ColorSchemeSettings();
         colorschemeSettings.set_ColorschemeSettings_Var1();
 
         //Работаем с баннерами
-        csCart.navigateToPage_BannersManagement();
+        csCart.navigateTo_BannersManagement();
         bannersManagementPage.set_ImageForBanner();
     }
 
@@ -46,7 +46,7 @@ public class BannerType_Image_Var1Test extends TestRunner {
     public void check_BannerType_Image_Var1Test(){
         CsCart csCart = new CsCart();
         AssertsPage assertsPage = new AssertsPage();
-        CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
+        CategoryPage categoryPage = csCart.navigateTo_CategoryPage(1);
 
         assertsPage.assertBannerExists(assertsPage.firstBannerForGrid);
         categoryPage.scrollToAndScreenBanner($(assertsPage.firstBannerForGrid),

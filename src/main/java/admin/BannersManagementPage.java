@@ -75,7 +75,7 @@ public class BannersManagementPage {
         String bannerName_WithoutOptions = "category_banners_list_image-1";
         String bannerName_CompactList = "category_banners_short_list_pair-1";
 
-        $("a[href$='category_banner_id=1']").click();
+        clickBannerLinkIfExists();
         field_Name.setValue("Autobanner of Image type");
 
         typeImage_Grid.click();
@@ -113,14 +113,34 @@ public class BannersManagementPage {
         }
     }
 
-    public void set_BlockForBanner(String blockName, String wrapper, String cssClass, String template) {
+
+    private void selectAppropriateBlock(String value, String blockTitle) {
+        SelenideElement block = $("#content_" + value + " strong[title='" + blockTitle + "']");
+        Utils.waitForSpinnerDisappear();
+        $(".ui-dialog-title").shouldBe(Condition.enabled);
+
+        ElementsCollection selects = $$("div.tabs--enable-fill select");
+        selects.last().selectOptionByValue(value);
+        sleep(500);
+
+        if (block.is(Condition.exist)) {
+            block.click();
+        } else {
+                selects.last().selectOptionContainingText("Непривязанные блоки");
+            sleep(500);
+
+            ElementsCollection blocks = $$("div[id*='content_theme_layout_blocks_'] strong[title='" + blockTitle + "']");
+            blocks.last().click();
+        }
+        Utils.waitForSpinnerDisappear();
+    }
+
+    public void set_BlockForBanner(String blockTitle, String wrapper, String cssClass, String template) {
         switch (template.toLowerCase()) {
             case "grid":
                 typeBlock_Grid.click();
                 button_SelectBlock_Grid.click();
-                $(".ui-dialog-title").shouldBe(Condition.enabled);
-                $("#content_user_existing_blocks_products_multicolumns strong[title='" + blockName + "']").click();
-                Selenide.sleep(1500);
+                selectAppropriateBlock("theme_layout_blocks_abt__unitheme2-5products_multicolumns", blockTitle);
                 if (!setting_Full_width.isSelected())
                     setting_Full_width.click();
                 setting_Wrapper_Grid.selectOption(wrapper);
@@ -130,9 +150,7 @@ public class BannersManagementPage {
             case "without options":
                 typeBlock_WithoutOptions.click();
                 button_SelectBlock_WithoutOptions.click();
-                $(".ui-dialog-title").shouldBe(Condition.enabled);
-                $("#content_user_existing_blocks_products_without_options strong[title='" + blockName + "']").click();
-                Selenide.sleep(1500);
+                selectAppropriateBlock("theme_layout_blocks_abt__unitheme2-5products_without_options", blockTitle);
                 setting_Wrapper_WithoutOptions.selectOption(wrapper);
                 setting_CssClass_WithoutOptions.setValue(cssClass);
                 break;
@@ -140,9 +158,7 @@ public class BannersManagementPage {
             case "compact":
                 typeBlock_Compact.click();
                 button_SelectBlock_Compact.click();
-                $(".ui-dialog-title").shouldBe(Condition.enabled);
-                $("#content_select_block_short_list strong[title='" + blockName + "']").click();
-                Selenide.sleep(1500);
+                selectAppropriateBlock("theme_layout_blocks_abt__unitheme2-5short_list", blockTitle);
                 setting_Wrapper_Compact.selectOption(wrapper);
                 setting_CssClass_Compact.setValue(cssClass);
                 break;
@@ -155,7 +171,11 @@ public class BannersManagementPage {
     public void addCategoryToBanner() {
         button_AddCategories.click();
         Utils.waitForSpinnerDisappear();
-        category_Electronics.click();
+        $(".ui-dialog-title").shouldBe(Condition.enabled);
+        if ($x("//span[text()='Магазин: CS-Cart']").exists())
+            $x("//span[text()='Магазин: CS-Cart']/..//span[contains(@class, 'icon-caret-right')]").click();
+        if (!category_Electronics.isSelected())
+            category_Electronics.click();
         button_SaveCategories.click();
         $(".ui-dialog-title").shouldBe(Condition.disappear);
     }

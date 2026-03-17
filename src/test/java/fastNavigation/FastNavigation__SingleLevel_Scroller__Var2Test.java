@@ -1,11 +1,12 @@
 package fastNavigation;
 
-import TestRunner.TestRunner;
+import testRunner.TestRunner;
 import admin.BannersManagementPage;
 import admin.Block_FastNavigation;
 import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
+import enums.BlockTitle;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -44,25 +45,33 @@ import static com.codeborne.selenide.Selenide.$x;
 public class FastNavigation__SingleLevel_Scroller__Var2Test extends TestRunner {
     @Test(priority = 1)
     public void setConfiguration_FastNavigation__SingleLevel_Scroller__Var2Test() {
-        String blockTitle = "Быстрая навигация";
         CsCart csCart = new CsCart();
         csCart.installAddonAtAddonsManager(csCart.gearwheel_FastNavigation, "ab__fast_navigation", "form[name=ab_install_form_54311]");
-        csCart.createBlockIfNotExists("ab__fast_navigation", blockTitle, "Fast navigation");
+        csCart.createBlockIfNotExists("ab__fast_navigation", BlockTitle.FAST_NAVIGATION.value(), "Fast navigation");
 
         //Работаем с настройками цветосхемы
-        ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
+        ColorschemeSettings colorschemeSettings = csCart.navigateTo_ColorSchemeSettings();
         colorschemeSettings.set_ColorschemeSettings_Var1();
 
         //Работаем с баннерами
-        BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
+        BannersManagementPage bannersManagementPage = csCart.navigateTo_BannersManagement();
         Utils.switchOffSecondAndNextBanners();
         if (!$x("//a[text()='FastNavigation__SingleLevel_Scroller__Var2Test']").exists()) {
             bannersManagementPage.clickBannerLinkIfExists();
             bannersManagementPage.field_Name.setValue("FastNavigation__SingleLevel_Scroller__Var2Test");
             bannersManagementPage.addCategoryToBanner();
-            bannersManagementPage.set_BlockForBanner(blockTitle, "--", "", "grid");
-            bannersManagementPage.set_BlockForBanner(blockTitle, "--", "", "without options");
-            bannersManagementPage.set_BlockForBanner(blockTitle, "--", "", "compact");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.FAST_NAVIGATION.value(),
+                    "--",
+                    "",
+                    "grid");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.FAST_NAVIGATION.value(),
+                    "--",
+                    "",
+                    "without options");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.FAST_NAVIGATION.value(),
+                    "--",
+                    "",
+                    "compact");
             bannersManagementPage.field_Position.setValue("4-6");
 
             // Работаем с настройками блока "Быстрая навигация"
@@ -77,7 +86,7 @@ public class FastNavigation__SingleLevel_Scroller__Var2Test extends TestRunner {
     @Test(priority = 2, dependsOnMethods = "setConfiguration_FastNavigation__SingleLevel_Scroller__Var2Test")
     public void check_FastNavigation__SingleLevel_Scroller__Var2Test() {
         CsCart csCart = new CsCart();
-        CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
+        CategoryPage categoryPage = csCart.navigateTo_CategoryPage(1);
         categoryPage.scrollToAndScreenBanner(null, "3100 FastNavigation__SingleLevel_Scroller__Var2Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();

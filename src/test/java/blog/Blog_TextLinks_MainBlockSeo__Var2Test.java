@@ -5,7 +5,8 @@ import admin.Block_Blog;
 import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
-import TestRunner.TestRunner;
+import testRunner.TestRunner;
+import enums.BlockTitle;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -43,21 +44,27 @@ public class Blog_TextLinks_MainBlockSeo__Var2Test extends TestRunner {
     public void setConfiguration_BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test(){
         CsCart csCart = new CsCart();
         //Работаем с настройками цветосхемы
-        ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
+        ColorschemeSettings colorschemeSettings = csCart.navigateTo_ColorSchemeSettings();
         colorschemeSettings.set_ColorschemeSettings_Var2();
 
         //Работаем с баннерами
-        BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
+        BannersManagementPage bannersManagementPage = csCart.navigateTo_BannersManagement();
         Utils.switchOffSecondAndNextBanners();
         if(!$x("//a[text()='BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test']").exists()) {
-            $("a[href$='category_banner_id=1']").click();
+            bannersManagementPage.clickBannerLinkIfExists();
             bannersManagementPage.field_Name.setValue("BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test");
-            bannersManagementPage.set_BlockForBanner("Будьте в курсе последних новостей (блог)",
-                    "AB: Основной блок (SEO)", "fill--color", "grid");
-            bannersManagementPage.set_BlockForBanner("Будьте в курсе последних новостей (блог)",
-                    "AB: Основной блок (SEO)", "fill--color", "without options");
-            bannersManagementPage.set_BlockForBanner("Будьте в курсе последних новостей (блог)",
-                    "AB: Основной блок (SEO)", "fill--color", "compact");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.BLOG.value(),
+                    "AB: Основной блок (SEO)",
+                    "fill--color",
+                    "grid");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.BLOG.value(),
+                    "AB: Основной блок (SEO)",
+                    "fill--color",
+                    "without options");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.BLOG.value(),
+                    "AB: Основной блок (SEO)",
+                    "fill--color",
+                    "compact");
             bannersManagementPage.field_Position.setValue("6");
             bannersManagementPage.button_Save.click();
 
@@ -72,7 +79,7 @@ public class Blog_TextLinks_MainBlockSeo__Var2Test extends TestRunner {
     @Test (priority = 2, dependsOnMethods = "setConfiguration_BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test")
     public void check_BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test() {
         CsCart csCart = new CsCart();
-        CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
+        CategoryPage categoryPage = csCart.navigateTo_CategoryPage(1);
         categoryPage.scrollToAndScreenBanner(null,  "600 BannerType_Block__Blog_TextLinks_MainBlockSeo__Var2Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();

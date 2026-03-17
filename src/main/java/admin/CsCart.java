@@ -25,12 +25,15 @@ public class CsCart implements CheckMenuToBeActive {
     SelenideElement button_Preview = $x("//a[contains(text(), 'Предпросмотр')]");
 
 
-    public CategoryPage navigateToCategoryPage(int tabNumber) {
+    public CategoryPage navigateTo_CategoryPage(int tabNumber) {
         checkMenuToBeActive("dispatch=products.manage", menu_Products);
         section_Categories.click();
+        if ($x("//span[text()='Магазин: CS-Cart']").exists())
+            $x("//span[text()='Магазин: CS-Cart']/..//span[contains(@class, 'icon-caret-right')]").click();
         categoryElectronics.click();
         Selenide.sleep(2000);
         gearwheelOfCategory.click();
+        sleep(500);
         button_Preview.click();
         switchTo().window(tabNumber);
         cookiesOnStorefront.click();
@@ -57,14 +60,14 @@ public class CsCart implements CheckMenuToBeActive {
         menu_DownloadedAddons.click();
     }
 
-    public ColorschemeSettings navigateToPage_ColorSchemeSettings() {
+    public ColorschemeSettings navigateTo_ColorSchemeSettings() {
         navigateTo_DownloadedAddonsPage();
         themeSectionsOnPage_DownloadedAddons.click();
         section_colorSchemeSettings.click();
         return new ColorschemeSettings();
     }
 
-    public BannersManagementPage navigateToPage_BannersManagement() {
+    public BannersManagementPage navigateTo_BannersManagement() {
         navigateTo_DownloadedAddonsPage();
         gearwheel_CategoryBanners.click();
         section_BannersManagement.click();
@@ -123,12 +126,20 @@ public class CsCart implements CheckMenuToBeActive {
         searchBlockByType(blockType);
         if ($x("//p[text()='Здесь пока ничего нет']").exists() ||
                 !$x("//div[@id='pagination_contents']//a[text()='" + blockTitle + "']").exists()) {
+            closeAllNotifications();
             openNewBlockAndGiveTitle(blockTitle);
             if (contentType != null) {
                 tab_Content.click();
                 contentMenu.selectOptionContainingText(contentType);
             }
             saveNewBlock.click();
+        }
+    }
+
+    public static void closeAllNotifications() {
+        while (!$$(".cm-notification-close").isEmpty()) {
+            $$(".cm-notification-close").first().click();
+            sleep(500);
         }
     }
 }

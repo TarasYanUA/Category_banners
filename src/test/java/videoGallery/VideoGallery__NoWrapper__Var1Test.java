@@ -5,7 +5,8 @@ import admin.Block_Video;
 import admin.ColorschemeSettings;
 import admin.CsCart;
 import com.codeborne.selenide.Condition;
-import TestRunner.TestRunner;
+import testRunner.TestRunner;
+import enums.BlockTitle;
 import org.testng.annotations.Test;
 import storefront.CategoryPage;
 import utils.Utils;
@@ -50,39 +51,45 @@ public class VideoGallery__NoWrapper__Var1Test extends TestRunner implements Add
         CsCart csCart = new CsCart();
         csCart.installAddonAtAddonsManager(csCart.gearwheel_VideoGallery, "ab__video_gallery", "form[name=ab_install_form_54312]");
         addVideo();
-        csCart.createBlockIfNotExists("ab__vg_videos", "Видео обзоры");
+        csCart.createBlockIfNotExists("ab__vg_videos", BlockTitle.VIDEO_GALLERY.value());
 
         //Работаем с настройками цветосхемы
-        ColorschemeSettings colorschemeSettings = csCart.navigateToPage_ColorSchemeSettings();
+        ColorschemeSettings colorschemeSettings = csCart.navigateTo_ColorSchemeSettings();
         colorschemeSettings.set_ColorschemeSettings_Var1();
         //Работаем с баннерами
-        BannersManagementPage bannersManagementPage = csCart.navigateToPage_BannersManagement();
+        BannersManagementPage bannersManagementPage = csCart.navigateTo_BannersManagement();
         Utils.switchOffSecondAndNextBanners();
         if (!$x("//a[text()='VideoGallery__NoWrapper__Var1Test']").exists()) {
             bannersManagementPage.clickBannerLinkIfExists();
-            //Нижних двух строк не должно быть, но из-за ошибки https://abteam.planfix.com/task/54635 нужно было дописывать
-            bannersManagementPage.field_Name.setValue("VideoGallery__MainBlockSeo__Var2Test");
+            bannersManagementPage.field_Name.setValue("VideoGallery__NoWrapper__Var1Test");
+            bannersManagementPage.addCategoryToBanner();
+            bannersManagementPage.set_BlockForBanner(BlockTitle.VIDEO_GALLERY.value(),
+                    "--",
+                    "",
+                    "grid");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.VIDEO_GALLERY.value(),
+                    "--",
+                    "",
+                    "without options");
+            bannersManagementPage.set_BlockForBanner(BlockTitle.VIDEO_GALLERY.value(),
+                    "--",
+                    "",
+                    "compact");
+            bannersManagementPage.field_Position.setValue("6");
+
+            // Работаем с настройками блока "Видео обзоры"
+            bannersManagementPage.setting_BlockSettings.scrollIntoCenter().click();
+            $(".ui-dialog-title").shouldBe(Condition.enabled);
+            Block_Video blockVideo = new Block_Video();
+            blockVideo.setSettingsForVideoBlock_Var1();
             bannersManagementPage.button_Save.click();
         }
-        bannersManagementPage.field_Name.setValue("VideoGallery__NoWrapper__Var1Test");
-        bannersManagementPage.addCategoryToBanner();
-        bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "grid");
-        bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "without options");
-        bannersManagementPage.set_BlockForBanner("Видео обзоры", "--", "", "compact");
-        bannersManagementPage.field_Position.setValue("6");
-
-        // Работаем с настройками блока "Видео обзоры"
-        bannersManagementPage.setting_BlockSettings.scrollIntoCenter().click();
-        $(".ui-dialog-title").shouldBe(Condition.enabled);
-        Block_Video blockVideo = new Block_Video();
-        blockVideo.setSettingsForVideoBlock_Var1();
-        bannersManagementPage.button_Save.click();
     }
 
     @Test(priority = 2, dependsOnMethods = "setConfiguration_VideoGallery__NoWrapper__Var1Test")
     public void check_VideoGallery_Var1Test() {
         CsCart csCart = new CsCart();
-        CategoryPage categoryPage = csCart.navigateToCategoryPage(1);
+        CategoryPage categoryPage = csCart.navigateTo_CategoryPage(1);
         categoryPage.scrollToAndScreenBanner(null, "2200 VideoGallery__NoWrapper__Var1Test - Grid");
         categoryPage.productListView_ListWithoutOptions.scrollIntoCenter().click();
         Utils.waitForSpinnerDisappear();
