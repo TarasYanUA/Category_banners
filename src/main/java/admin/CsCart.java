@@ -28,7 +28,7 @@ public class CsCart implements CheckMenuToBeActive {
     public CategoryPage navigateTo_CategoryPage(int tabNumber) {
         checkMenuToBeActive("dispatch=products.manage", menu_Products);
         section_Categories.click();
-        if ($x("//span[text()='Магазин: CS-Cart']").exists())
+        if ($("span[id*='off_comp'][class='cm-combination hidden']").exists())
             $x("//span[text()='Магазин: CS-Cart']/..//span[contains(@class, 'icon-caret-right')]").click();
         categoryElectronics.click();
         Selenide.sleep(2000);
